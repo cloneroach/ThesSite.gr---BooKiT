@@ -1,0 +1,137 @@
+td {
+
+
+
+	padding: 3px;
+
+}
+
+
+
+#calback {
+
+	background: #FFF url('../images/calWaiting.gif') no-repeat 50% 100px;
+
+	margin: 0 auto;
+
+	width: 280px;
+
+}
+
+
+
+#calendar {
+
+	width: 100%;
+
+	
+
+	
+
+}
+
+
+
+.bcal {
+
+	background: #dddddd;
+
+	width: 100%; 
+
+	border: 1px solid #dddddd;
+
+}
+
+
+
+.bcalhead {
+
+	width: 100%;
+
+	color: #333333;
+
+	font-size: 20px;      
+
+}
+
+
+
+.bcalhead img {
+
+	border: none;
+
+}
+
+
+
+.bdayhead {
+
+	height: 15px;
+
+	background: #EEE;
+
+}
+
+
+
+.bdayhead td {
+
+	text-align: center;
+
+	color: #000;
+
+}
+
+
+
+.bdayrow {
+
+	background: #FFF;
+
+	height: 20px;
+
+}
+
+
+
+.bdayrow td {
+
+	width: 10px;
+
+	color: #000;
+
+	font-size: 10px;
+
+}
+
+
+
+.bday {
+
+	float: right;
+
+}
+
+
+
+.dayover {
+
+	
+
+}
+
+
+
+
+
+.dayout {
+
+	
+
+}
+
+
+
+
+
+    

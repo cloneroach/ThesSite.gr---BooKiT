@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+
+		<param name="dateformat" type="list" default="3" label="Date format"
+			description="Choose your preferred date format. All dates will be shown in this format.">
+			<option value="1">Y-m-d</option>
+			<option value="2">m-d-Y</option>
+			<option value="3">d-m-Y</option>
+		</param>
+		<param name="currency" type="list" default="EUR" label="Currency"
+			description="Select your preferred currency.">
+			<option value="EUR">EUR</option>
+			<option value="USD">USD</option>
+			<option value="AUD">AUD</option>
+			<option value="BRL">BRL</option>
+			<option value="GBP">GBP</option>
+			<option value="CAD">CAD</option>
+			<option value="CZK">CZK</option>
+			<option value="DKK">DKK</option>
+			<option value="HKD">HKD</option>
+			<option value="HUF">HUF</option>
+			<option value="ILS">ILS</option>
+			<option value="JPY">JPY</option>
+			<option value="MXN">MXN</option>
+			<option value="NZD">NZD</option>
+			<option value="NOK">NOK</option>
+			<option value="PHP">PHP</option>
+			<option value="PLN">PLN</option>
+			<option value="SGD">SGD</option>
+			<option value="SEK">SEK</option>
+			<option value="CHF">CHF</option>
+			<option value="TWD">TWD</option>
+			<option value="THB">THB</option>
+		</param>
+
+		<param name="width" type="text" size="10" default="96" label="Room category thumbnail width"
+			description="This is the width of the room category thumbnail, displayed in booking search results.
+			You can upload images of any size in /images/bookit/images and BooKiTGold will create the thumbnails." />
+		<param name="height" type="text" size="10" default="96"
+			label="Room category thumbnail height" description="This is the height of the room category thumbnail, displayed in booking search results.
+			You can upload images of any size in /images/bookit/images and BooKiTGold will create the thumbnails." />
+		<param name="extra_availability" type="text" size="10" default="Other"
+			label="Extra availability state" description="Define the name of the additional availability state.
+			Predefined are Available, Booked and Pending." />
+		<param name="available_color" type="text" size="10" default="#CCFFCC"
+			label="Available color" description="Define the color in hex code for Available days." />
+		<param name="booked_color" type="text" size="10" default="#FF6666"
+			label="Booked color" description="Define the color in hex code for Booked days." />
+		<param name="pending_color" type="text" size="10" default="#FFCC66"
+			label="Pending color" description="Define the color in hex code for Pending days." />
+		<param name="other_color" type="text" size="10" default="#CCCCFF"
+			label="Extra availability state color" description="Define the color in hex code for the extra availability state." />
+		<param name="show_available" type="radio" default="1"
+			label="Show available days?" description="State if you want available days to be visible in the front-end calendar.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_booked" type="radio" default="1" label="Show booked days?"
+			description="State if you want booked days to be visible in the front-end calendar.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_pending" type="radio" default="1" label="Show pending days?"
+			description="State if you want pending days to be visible in the front-end calendar.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_extra" type="radio" default="0" label="Show extra availability state days?"
+			description="State if you want days in the extra availability state to be visible in the front-end calendar.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="show_coupons" type="radio" default="1" label="Show coupons?"
+			description="State if you want your visitors to be able to enter coupon codes in front-end.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+		<param name="deposit_percent" type="text" size="10" default="0"
+			label="Required deposit (percentage)" description="Enter the amount of deposit you require as a deposit for a booking.
+			Leave this empty if you do not want to accept payments or if you want to define fixed amount for deposits. Do not use % symbol." />
+		<param name="deposit_fixed" type="text" size="10" default="0"
+			label="Required deposit (fixed)" description="Enter the amount of deposit you require as a deposit for a booking.
+			Leave this empty if you do not want to accept payments or if you want to define percentage amount for deposits." />
+		<param name="terms_conditions" type="textarea" default=""
+			label="Terms and Conditions" description="Enter the Terms and Conditions of your hotel." rows="8"
+			cols="30" />
+		<param name="cancellation_policy" type="textarea" default=""
+			label="Cancellation Policy" description="Enter the Cancellation Policy of your hotel."
+			rows="8" cols="30" />
+		<param name="form_msg" type="textarea" default=""
+			label="Custom form message" description="Enter a custom message to be disblayed above the booking details form"
+			rows="6" cols="30" />
+		<param name="contact_details" type="textarea" default=""
+			label="Mail signature" description="Enter your mail signature to be included in the confirmation mails sent after booking requests or booking confirmations."
+			rows="8" cols="30" />
+		<param name="email_logo" type="text" size="10" default="" label="Email logo image"
+			description="Enter the name of a file you want to use as a header-logo in all emails sent. Upload the file in /images/bookit/images and use jpeg or gif format." />
+		<param name="paypal_mail" type="text" size="20" default="" label="Paypal email" 
+			description="Enter the email you use in your paypal account." />
+		<param name="payment_return" type="text" size="40" default="" label="Successful payment URL" 
+			description="Enter the absolute or relative path to an article where the user will be redirected after a successful payment. Do not use external URLS" />
+		<param name="payment_cancel" type="text" size="40" default="" label="Uncompleted payment URL" 
+			description="Enter the absolute or relative path to an article that the user will be redirected after an uncompleted payment. Do not use external URLS." />
+
+	</params>
+</config>

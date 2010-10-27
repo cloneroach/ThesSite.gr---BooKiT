@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<state>
+<name>BooKiT Gold</name>
+<description>Set the parameters for displaying availability of your hotel</description>
+<params>
+<param name="show_calendar" type="radio" default="1" label="Show calendar?" description="State if you want to enable availability calendar in front-end.">
+<option value="1">Yes</option>
+<option value="0">No</option>
+</param>
+</params>
+</state>
+</metadata>

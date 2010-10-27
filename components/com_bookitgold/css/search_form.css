@@ -1,0 +1,299 @@
+@CHARSET "ISO-8859-1";
+
+#bookit_search_div {
+	float: left;
+}
+
+#bookit_search_calendar_div {
+	float: left;
+	margin-left: 80px;
+}
+
+#quick_results {
+	float: left;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #cc0033;
+	
+	width: 250px;
+}
+
+#quick_results_error {
+	float: left;
+	width: 250px;
+	color: #cc0033;
+
+}
+
+.bookit_search_legent {
+	font-family: inherit;
+	color: #002159;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.bookit_search_fieldset {
+	border: 1px solid;
+	border-color: #f5c353;
+}
+
+.bookit_search_label {
+	font-family: inherit;
+	font-weight: bold;
+	color: #002159;
+}
+
+.bookit_search_inputbox {
+	color: #003;
+	background: #fef1b6;
+	border: 1px solid #c60;
+}
+
+.bookit_search_inputbox:HOVER {
+	border: 1px solid #002159;
+}
+
+.bookit_search_select {
+	width: 40px;
+	color: #003;
+	background: #fef1b6;
+	border: 1px solid #c60;
+}
+
+.bookit_search_select:HOVER {
+	border: 1px solid #002159;
+}
+
+#bookit_search_tdl {
+	float: left;
+	margin-right: 20px;
+	width: 150px;
+}
+
+#bookit_search_tdr {
+	float: left;
+	width: 150px;
+}
+
+#bookit_search_tds {
+	float: left;
+	width: 100px;
+	margin-left: 20px;
+}
+
+.bookit_search_tdl_day {
+	float: left;
+	margin-right: 20px;
+	width: 150px;
+	margin-bottom: 10px;
+	color: #C60;
+}
+
+.bookit_search_tdr_day {
+	float: left;
+	width: 150px;
+	margin-bottom: 10px;
+	color: #C60;
+}
+
+.bookit_search_error {
+		color: #cc0033;
+	
+}
+
+#bookit_search_clear {
+	clear: both;
+}
+
+.bookit_search_result_row {
+	width: 100%;
+	float: left;
+}
+
+.bookit_search_result_header {
+	width: 100%;
+	height: 30px;
+	float: left;
+	background-color: #fef1b6;
+	margin-bottom: 5px;
+}
+
+.bookit_search_result_header_text {
+	color: #002159;
+	font-size: 16px;
+	padding-top: 7px;
+	padding-left: 5px;
+	float: left;
+}
+
+.bookit_search_result_header_desc {
+	color: #5588bb;
+	font-size: 14px;
+	padding-top: 7px;
+}
+
+.bookit_search_result_img {
+	float: left;
+	width: 92px;
+	height: 92px;
+	margin-left: 5px;
+}
+
+.bookit_search_result_img img {
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	height: 22em;
+	border: 1px solid #dddddd;
+}
+
+.bookit_search_result_desc {
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-left: 5px;
+	width: 290px;
+	text-align: justify;
+}
+
+.bookit_search_result_fas {
+	float: left;
+	width: 200px;
+	border-left: 1px dotted #002159;
+	padding-left: 10px;
+}
+
+.bookit_search_del {
+	text-decoration: line-through;
+	color: red;
+}
+
+.bookit_search_result_right {
+	float: right;
+}
+
+.bookit_search_result_price {
+	margin-right: 30px;
+	padding-right: 0px;
+	color: #036;
+	font-size: 16px;
+	font-weight: bold;
+	float: right;
+}
+
+.bookit_search_result_offer {
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ff6600;
+	float: right;
+}
+
+.bookit_search_facilities_list {
+	list-style-type: circle;
+}
+
+/*Image enlarge */
+a.p1 {
+	display: block;
+	width: 75px;
+	height: 75px;
+	text-decoration: none;
+	background: /*#f5c353;*/ #ffffff;
+	border: 0;
+	float: left;
+}
+
+a.p1 img {
+	display: block;
+	border: 0;
+}
+
+a.p1:hover {
+	text-decoration: none;
+	background-color: /*#f5c353;*/ #ffffff;
+	color: #000;
+	position: relative;
+	z-index: 500;
+}
+
+a.p1 b {
+	display: block;
+	position: absolute;
+	left: -9999px;
+	padding: 10px;
+	opacity: 0;
+}
+
+a.p1:hover b {
+	top: -65px;
+	left: 110px;
+	padding: 10px;
+	border: 1px solid #c60;
+	background: #fef1b6;
+	opacity: 0.9;
+}
+
+/*Book Button */
+#bookit_button_div {
+	display: block;
+	margin-top: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #CCC;
+}
+
+/* Button properties in still mode */
+.bookit_button a {
+	padding: 0 10px;
+	float: left;
+	text-decoration: none;
+	color: #069;
+	font-weight: bold;
+	border: 1px solid #09C;
+}
+
+/* Button properties in dynamic mode (mouse-over) */
+.bookit_button a:hover {
+	color: #003;
+	background-color: #036;
+}
+
+.bookit_search_result_below {
+	float: left;
+	width: 100%;
+}
+
+.bookit_search_result_below_cell {
+	float: left;
+	border-right: 1px solid #fef1b6;
+	border-bottom: 1px solid #fef1b6;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	padding-right: 5px;
+	width: 100px;
+}
+
+.bookit_search_result_below_cell_header {
+	color: #5588bb;
+	font-size: 14px;
+	margin-right: 10px;
+}
+
+.bookit_search_result_below_cell_price {
+	padding-right: 0px;
+	color: #666666;
+	font-size: 12px;
+	font-weight: bold;
+	float: right;
+}
+.bookit_search_result_nights{
+	margin-right: 30px;
+	padding-right: 0px;
+	color: #069;
+	font-size: 14px;
+	float: right;
+	
+	}

@@ -1,0 +1,135 @@
+td {
+
+	font-family: "Trebuchet MS", Arial, Veranda;
+
+	padding: 3px;
+
+}
+
+
+
+#calback {
+
+	background: #FFF url('../images/calWaiting.gif') no-repeat 50% 100px;
+
+	/*margin: 0 auto;*/
+
+	width: 350px;
+
+}
+
+
+
+#calendar {
+
+	width: 100%;
+
+	height: 100%;
+
+}
+
+
+
+.bcal {
+
+	background: #000;
+
+	width: 100%; 
+
+}
+
+
+
+.bcalhead {
+
+	width: 100%;
+
+	font-weight: bold;
+
+	color: #FFF;
+
+	font-size: 20px;      
+
+}
+
+
+
+.bcalhead img {
+
+	border: none;
+
+}
+
+
+
+.bdayhead {
+
+	height: 25px;
+
+	background: #EEE;
+
+}
+
+
+
+.bdayhead td {
+
+	text-align: center;
+
+	color: #000;
+
+}
+
+
+
+.bdayrow {
+
+	background: #FFF;
+
+	height: 40px;
+
+}
+
+
+
+.bdayrow td {
+
+	width: 50px;
+
+	color: #000;
+
+	font-size: 10px;
+
+}
+
+
+
+.bday {
+
+	float: right;
+
+}
+
+
+
+.dayover {
+
+	
+
+}
+
+
+
+
+
+.dayout {
+
+	
+
+}
+
+
+
+
+
+    

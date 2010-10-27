@@ -1,0 +1,465 @@
+@CHARSET "ISO-8859-1";
+
+
+
+.bookit_booking_legent {
+
+	font-family: inherit;
+
+	color: #002159;
+
+	font-size: 16px;
+
+	font-weight: normal;
+
+}
+
+
+
+.bookit_booking_fieldset {
+
+	border: 1px solid;
+
+	border-color: #f5c353;
+
+}
+
+
+
+.bookit_booking_review_left {
+
+	float: left;
+
+	width: 300px;
+
+	/*border: 1px black solid;*/
+
+}
+
+
+
+.bookit_booking_review_right {
+
+	float: left;
+
+	/*border: 1px black solid;*/
+
+}
+
+
+
+.bookit_booking_clear {
+
+	clear: both;
+
+}
+
+
+
+.bookit_booking_left_td {
+
+	color: #333333;
+
+	font-size: 14px;
+
+	border-bottom: 1px dotted #aaccdd;
+
+	height: 20px;
+
+	padding-top: 5px;
+
+}
+
+
+
+.bookit_booking_right_td {
+
+	color: #069;
+
+	font-size: 14px;
+
+	height: 20px;
+
+	padding-top: 6px;
+
+	padding-left: 5px;
+
+}
+
+
+
+.bookit_booking_review_header {
+
+	color: #002159;
+
+	font-size: 14px;
+
+	margin-top: 20px;
+
+	width: 400px;
+
+	background-color: #fef1b6;
+
+	height: 16px;
+
+	padding-top: 4px;
+
+	padding-left: 5px;
+
+}
+
+
+
+.bookit_booking_review_header_terms {
+
+	color: #069;
+
+	font-size: 14px;
+
+	margin-top: 20px;
+
+	width: 400px;
+
+	height: 16px;
+
+	padding-top: 4px;
+
+}
+
+
+
+.bookit_booking_taxes_left {
+
+	color: #333333;
+
+	float: left;
+
+	width: 280px;
+
+	font-size: 14px;
+
+	height: 20px;
+
+	padding-top: 5px;
+
+}
+
+
+
+.bookit_booking_taxes_right {
+
+	float: left;
+
+	color: #069;
+
+	font-size: 14px;
+
+	height: 20px;
+
+	padding-top: 6px;
+
+	padding-left: 5px;
+
+	margin-left: 14px;
+
+}
+
+
+
+.bookit_booking_taxes_qnt {
+
+	float: right;
+
+	margin-right: 10px;
+
+}
+
+
+
+#bookit_booking_review_final_price_header {
+
+	color: #002159;
+
+	font-size: 15px;
+
+	margin-top: 20px;
+
+	width: 400px;
+
+	background-color: #fef1b6;
+
+	height: 16px;
+
+	padding-top: 4px;
+
+	padding-left: 5px;
+
+}
+
+
+
+.bookit_booking_final_price {
+
+	float: right;
+
+	color: #069;
+
+	font-size: 14px;
+
+	margin-right: 44px;
+
+	font-weight: bold;
+
+}
+
+
+
+.bookit_booking_taxes_left_desc {
+
+	font-size: 11px;
+
+	float: left;
+
+	color: #333333;
+
+	width: 280px;
+
+}
+
+
+
+#bookit_booking_code_msg {
+
+	float: left;
+
+	height: 20px;
+
+	padding-top: 6px;
+
+	padding-left: 5px;
+
+	margin-left: 14px;
+
+}
+
+
+
+#bookit_invalid_code {
+
+	font-size: 14px;
+
+	color: #ff0033;
+
+	float: left;
+
+	background: url('../images/cross.png');
+
+	background-repeat: no-repeat;
+
+	padding-left: 18px;
+
+}
+
+
+
+#bookit_valid_code {
+
+	font-size: 14px;
+
+	color: #009900;
+
+	float: left;
+
+	background: url('../images/tick.png');
+
+	background-repeat: no-repeat;
+
+	padding-left: 18px;
+
+}
+
+
+
+.bookit_booking_pref_qnt {
+
+	float: right;
+
+	margin-right: 10px;
+
+}
+
+
+
+.bookit_booking_pref_left {
+
+	color: #333333;
+
+	float: left;
+
+	width: 280px;
+
+	font-size: 14px;
+
+	height: 20px;
+
+	padding-top: 5px;
+
+}
+
+
+
+.bookit_booking_pref_left_desc {
+
+	font-size: 11px;
+
+	float: left;
+
+	color: #333333;
+
+	width: 280px;
+
+}
+
+
+
+#bookit_booking_cancellation_policy {
+
+	width: 400px;
+
+	font-size: 11px;
+
+	
+
+	background: #ffffee;
+
+}
+
+
+
+#bookit_booking_terms_conditions {
+
+	width: 400px;
+
+	font-size: 11px;
+
+	
+
+	background: #ffffee;
+
+}
+
+
+
+#bookit_booking_accept {
+
+	color: #333333;
+
+	float: left;
+
+	font-size: 12px;
+
+	padding-top: 5px;
+
+	width: 295px;
+
+}
+
+
+
+#bookit_booking_continue {
+
+	float: left;
+
+	width: 400px;
+
+	margin-top: 20px;
+
+	margin-bottom: 20px;
+
+	padding-bottom: 10px;
+
+	border-bottom: 1px dotted #aaccdd;
+
+}
+
+
+
+/*Book Button */
+
+#bookit_booking_accept_button {
+
+	display: block;
+
+	margin-top: 10px;
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	font-size: 14px;
+
+	color: #CCC;
+
+	float: left;
+
+}
+
+
+
+#accept_error {
+
+	width: 295px;
+
+	float: left;
+
+	border: 1px solid #dddddd;
+
+	color: #cc0033;
+
+	background: #ffffee;
+
+}
+
+
+
+#bookit_booking_pref_requests {
+
+	color: #333333;
+
+	float: left;
+
+	width: 280px;
+
+	font-size: 14px;
+
+	padding-top: 5px;
+
+}
+
+
+
+/* Button properties in still mode */
+
+.bookit_button a {
+
+	padding: 0 10px;
+
+	text-decoration: none;
+
+	color: #069;
+
+	font-weight: bold;
+
+	border: 2px solid #09C;
+
+}
+
+
+
+/* Button properties in dynamic mode (mouse-over) */
+
+.bookit_button a:hover {
+
+	color: #fff;
+
+	background-color: #09C;
+
+}
