@@ -84,8 +84,9 @@ $sql = "SELECT idcountry, name FROM #__bookitcountry ORDER BY name";
 $db->setQuery($sql);
 
 
-
-$results[] = JHTML::_('select.option', 0, '-Select Country-', 'idcountry', 'name' );
+$select_country = JText::_('-Select Country-');
+//$results[] = JHTML::_('select.option', 0, '-Select Country-', 'idcountry', 'name' );
+$results[] = JHTML::_('select.option', 0, $select_country, 'idcountry', 'name' );
 
 $results = array_merge( $results, $db->loadObjectList() );
 
@@ -95,15 +96,9 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 ?>
 
-<fieldset class="bookit_final_fieldset"><legend
+<fieldset class="bookit_final_fieldset"><legend class="bookit_final_legent"><?php echo JText::_("Guest Information");?> </legend>
 
-	class="bookit_final_legent"><?php echo JText::_("Booking Details");?> </legend>
-
-<form action="<?php echo JURI::base() ?>index.php" name="finalForm"
-
-	method="post">
-
-
+<form action="<?php echo JURI::base() ?>index.php" name="finalForm" method="post">
 
 <div id="bookit_final_form">
 
@@ -128,11 +123,6 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <?php }?>
 
 
-
-	
-
-	
-
 <div id="bookit_final_fname_left" class="bookit_final_left"><?php echo JText::_("First Name").$star;?></div>	
 
 <div id="bookit_final_fname_right" class="bookit_final_right">
@@ -151,7 +141,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 
 
-<div id="bookit_final_lname_left" class="bookit_final_left"><?php echo JText::_("Last Name").$star;?></div>	
+<div id="bookit_final_lname_left" class="bookit_final_left"><?php echo JText::_("Surname").$star;?></div>	
 
 <div id="bookit_final_lname_right" class="bookit_final_right">
 
@@ -161,7 +151,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <div id="bookit_final_lname_right_error" class="bookit_final_error" style="display: none;">
 
-<?php echo JText::_("Please enter your last name.");?>
+<?php echo JText::_("Please enter your surname.");?>
 
 </div>
 
@@ -357,37 +347,51 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div class="bookit_payment_header"><?php echo JText::_("Credit Card Payment");?></div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Credit Card Number").$star; ?></div>
 <div class="bookit_final_pcode_right" id="bookit_final_right"><input type="text" name="ccno" id="ccno" class="bookit_final_input" /></div>
+<div id="bookit_final_ccno_right_error" class="bookit_final_error" style="display: none;">
+<?php echo JText::_("Please type your card number.");?>
+</div>
+<div class="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Card Type").$star; ?>
+	<select class="bookit_final_input" name="card_type" id="card_type">
+		<option value="Visa">Visa</option>
+		<option value="Mastercard">Mastercard</option>
+	</select>
+</div>
+<div id="bookit_final_cardtype_right_error" class="bookit_final_error" style="display: none;">
+<?php echo JText::_("Please select the type of your card number.");?>
+</div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><?php echo JText::_("Expiry Date").$star;?></div>
 <div class="bookit_final_pcode_right" id="bookit_final_right">
-
-<select class="bookit_final_input" name="exp_month" id="exp_month">
-<option value="01">01</option>
-<option value="02">02</option>
-<option value="03">03</option>
-<option value="04">04</option>
-<option value="05">05</option>
-<option value="06">06</option>
-<option value="07">07</option>
-<option value="08">08</option>
-<option value="09">09</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="12">12</option>
+	<select class="bookit_final_input" name="exp_month" id="exp_month">
+		<option value="01">01</option>
+		<option value="02">02</option>
+		<option value="03">03</option>
+		<option value="04">04</option>
+		<option value="05">05</option>
+		<option value="06">06</option>
+		<option value="07">07</option>
+		<option value="08">08</option>
+		<option value="09">09</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
 </select>
 <? echo JText::_("&frasl;"); ?>
-<select class="bookit_final_input" name="exp_year" id="exp_year">
-<option value="2010">2010</option>
-<option value="2011">2011</option>
-<option value="2012">2012</option>
-<option value="2013">2013</option>
-<option value="2014">2014</option>
-<option value="2015">2015</option>
-<option value="2016">2016</option>
-<option value="2017">2017</option>
-<option value="2018">2018</option>
-<option value="2019">2019</option>
-<option value="2020">2020</option>
-</select>
+	<select class="bookit_final_input" name="exp_year" id="exp_year">
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+		<option value="2020">2020</option>
+	</select>
+</div>
+<div id="bookit_final_expiry_right_error" class="bookit_final_error" style="display: none;">
+<?php echo JText::_("Please select the expiry date of your card number.");?>
 </div>
 </div>
 
@@ -410,9 +414,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 
 
-<button type="button" name="send_button" id="send_button"
-
-onclick="sendRequest()"><?php echo JText::_("Send Request")?></button>
+<button type="button" name="send_button" id="send_button" onclick="sendRequest()"><?php echo JText::_("Send Request")?></button>
 
 
 
@@ -444,13 +446,11 @@ onclick="sendRequest()"><?php echo JText::_("Send Request")?></button>
 
 
 
-<input type="hidden" name="layout"
-
-	value="<?php echo $this->getLayout();?>" /> <input type="hidden"
-
-	name="option" value="com_bookitgold" /> <input type="hidden"
-
-	name="task" value="" /> <input type="hidden" name="tmpl" value="" /></form>
+<input type="hidden" name="layout" value="<?php echo $this->getLayout();?>" />
+<input type="hidden" name="option" value="com_bookitgold" />
+<input type="hidden" name="task" value="" />
+<input type="hidden" name="tmpl" value="" />
+</form>
 
 <!--  Payment -->
 
@@ -568,12 +568,26 @@ function formValidation ()
 
 {
 	// PayMethod*
+	// Card Check 1* (If Selected)
 	// Please select a payment method
 	// Thessite
 	
 	var pay_MethodField = document.getElementById('pay_method');
+	var exp_monthField = document.getElementById('exp_month');
+	var exp_yearField = document.getElementById('exp_year');
+	var card_typeField = document.getElementById('card_type');
+	var ccnoField = document.getElementById('ccno');
+
 	var pay_MethodErrorDiv = document.getElementById('bookit_final_paymethod_right_error');
+	var expiryErrorDiv = document.getElementById('bookit_final_expiry_right_error');
+	var card_typeErrorDiv = document.getElementById('bookit_final_cardtype_right_error');
+	var ccnoErrorDiv = document.getElementById('bookit_final_ccno_right_error');
+	
 	pay_MethodErrorDiv.style.display="none";
+	expiryErrorDiv.style.display="none";
+	ccnoErrorDiv.style.display="none";
+	card_typeErrorDiv.style.display="none";
+	
 
 	//First Name*
 
@@ -682,13 +696,25 @@ function formValidation ()
 	cityErrorDiv.style.display="none";
 
 	
+if( pay_MethodField.value == "" )
+	pay_MethodErrorDiv.style.display=="inline";
+
+	else if( pay_MethodField.value == "2" )
+		if( ccnoField.value == "" )
+			ccnoErrorDiv.style.display=="inline";
+		else if( (exp_monthField.value == "") || ( exp_yearField == "" ) )
+			expiryrErrorDiv.style.display = "inline";
+		else if( card_typeField.value == "" )
+			card_typeErrorDiv.style.display == "inline";
+
+
 
 	if (nameField.value=="")
 
 		nameErrorDiv.style.display="inline";
 		
-	else if (pay_MethodField.value=="0")
-		pay_MethodErrorDiv.style.display=="inline"; //Thessite
+//	else if (pay_MethodField.value=="0")
+//		pay_MethodErrorDiv.style.display=="inline"; //Thessite
 
 
 
@@ -948,7 +974,7 @@ function makeBooking (){
 
 	var nchilds_js = "<?php echo $this->nchilds;?>";
 	
-	var lchilds_js = "<?php echo $this->lchilds; // Thessite?>";
+	var lchilds_js = "<?php echo $this->lchilds; ?>"; // Thessite
 
 	var idcategory_js = "<?php echo $this->idcategory;?>";
 
@@ -963,6 +989,11 @@ function makeBooking (){
 	var coupon_code_js = "<?php echo $this->coupon_code;?>";
 
 	
+	var ccno_js = document.getElementById('ccno').value;
+	var exp_month_js = document.getElementById('exp_month').value;
+	var exp_year_js = document.getElementById('exp_year').value;
+	var card_type_js = document.getElementById('card_type').value;
+	var pay_method_js = document.getElementById('pay_method').value;
 
 	var name_js = document.getElementById('name').value;
 

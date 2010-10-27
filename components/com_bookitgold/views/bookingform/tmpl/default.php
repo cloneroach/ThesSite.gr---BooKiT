@@ -457,13 +457,9 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 
 
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_bookitgold&controller=finalform&task=finaldefault' );?>" name="bookingForm"
+<form action="<?php echo JRoute::_( 'index.php?option=com_bookitgold&controller=finalform&task=finaldefault' );?>" name="bookingForm" method="post">
 
-	method="post">
-
-<fieldset class="bookit_booking_fieldset"><legend
-
-	class="bookit_booking_legent"><?php echo JText::_("Review Booking")?> </legend>
+<fieldset class="bookit_booking_fieldset"><legend class="bookit_booking_legent"><?php echo JText::_("Itinerary Review")?></legend>
 
 <div class="bookit_booking_review_left">
 
@@ -513,13 +509,15 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 
 
 <div class="bookit_booking_right_td"><?php echo $this->price." ".$this->currency;?></div>
-<?php if( $total_guests > 4 ) {
-	// Thessite - Calculate the price for the extra persons and show it to the guest.
+<?php
+
+// Thessite - Calculate the price for the extra persons and show it to the guest.
+if( $total_guests > 4 ) { //
 	$extra_ppl = $total_guests - 4;
 	$new_price = 6 * ( $this->nnights * $extra_ppl );
 ?>
 	<div class="bookit_booking_right_td"><?php echo JText::_($new_price." ".$this->currency." (6 ".$this->currency." / Night)");?></div>
-<? } ?>
+<?php } ?>
 
 
 </div>
@@ -580,7 +578,7 @@ for ($i=0; $i<count($pref_array); $i++)
 
 <div id="bookit_booking_pref_requests">
 
-<?php echo JText::_("Special Requests"); ?><br />
+<?php echo JText::_('Guest Comments / Special Requests'); ?><br />
 
 <textarea rows="4" cols="32" name="preferences" id="preferences"></textarea>
 
@@ -591,6 +589,9 @@ for ($i=0; $i<count($pref_array); $i++)
 <div class="bookit_booking_clear"></div>
 
 <div class="bookit_booking_review_header"><?php echo JText::_("Extra Services");//echo JText::_("Taxes / Extra Services");?>
+<?php
+echo JText::_("In an attempt to make your stay as comfortable as possible, a list of extra services is given below for you to choose the one(s) that meet your needs and expectations");
+?>
 
 <br />
 
@@ -694,15 +695,9 @@ for ($i=0; $i<count($extra_array); $i++)
 
 <div class="bookit_booking_review_header"><?php echo JText::_("Promotional Code");?></div>
 
-<div class='bookit_booking_taxes_left'><input type="text" name="code"
+<div class='bookit_booking_taxes_left'><input type="text" name="code" id="coupon_code" />
 
-	id="coupon_code" />
-
-<button class="button" id="coupon_button"
-
-<?php $js='onClick=" return (couponValidation(\''.$this->valid_from.'\',\''.$this->valid_to.'\','.$this->idcategory.',\''.$this->currency.'\'));"';
-
-echo $js;?>><?php echo JText::_('Apply'); ?></button>
+<button class="button" id="coupon_button"<?php $js='onClick=" return (couponValidation(\''.$this->valid_from.'\',\''.$this->valid_to.'\','.$this->idcategory.',\''.$this->currency.'\'));"'; echo $js;?>><?php echo JText::_('Apply'); ?></button>
 
 
 
@@ -718,7 +713,7 @@ echo $js;?>><?php echo JText::_('Apply'); ?></button>
 
 <div class="bookit_booking_review_right">
 
-<div id="bookit_booking_review_final_price_header"><?php echo JText::_("Grand Total");?>
+<div id="bookit_booking_review_final_price_header"><?php echo JText::_("Total Cost");?>
 
 <?php
 

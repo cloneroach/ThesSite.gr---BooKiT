@@ -158,17 +158,11 @@ $itemid = $menu->id;
 
 ?>
 
+<form action="<?php echo JRoute::_( 'index.php?option=com_bookitgold&amp;controller=bookingform&amp;task=bookingdefault');?>" name="searchForm" method="post">
+<fieldset class="bookit_search_fieldset"><legend class="bookit_search_legent"><?php echo JText::_('Welcome to "Akti Retzika" reservations system!');?></legend>
 <div align="center">
-	<?php echo "<strong>".JText::_('Welcome to "Akti Retzika" reservations system!')."</strong>"; ?>
-    <?php echo "<p>".JText::_("To be able to check the availability and proceed with your reservation please fill in the information required below.")."</p>"; ?>
+	<?php echo "<p>".JText::_("To be able to check the availability and proceed with your reservation please fill in the information required below.")."</p>"; ?>
 </div>
-
-
-<form action="<?php echo JRoute::_( 'index.php?option=com_bookitgold&amp;controller=bookingform&amp;task=bookingdefault');?>" name="searchForm"
-
-	method="post">
-<fieldset class="bookit_search_fieldset"><legend class="bookit_search_legent"><?php echo JText::_('Search Availability');?></legend>
-
 <div id="bookit_search_div">
 
 <div id="bookit_search_tdl">
@@ -177,8 +171,10 @@ $itemid = $menu->id;
 
 </p>
 
-<p><?php $startdate = date ($d1,strtotime("+5 day")); $fn="valid_from"; $fn2="valid_to";
-
+<p>
+<?php
+$startdate = date ($d1,strtotime("+5 day"));
+$fn="valid_from"; $fn2="valid_to";
 $js = 'onChange="(updateDateField(\''.$fn.'\',\''.$d1.'\')); (setDayName(\''.$fn.'\',\''.$d1.'\')); (setDayName(\''.$fn2.'\',\''.$d1.'\'));"';
 
 echo JHTML::_( 'calendar',$startdate,'valid_from','valid_from',$d2,'class="bookit_search_inputbox" size="10"'.$js);?>
@@ -300,11 +296,7 @@ echo JHTML::_( 'calendar',date($d1,strtotime("+ 6day")),'valid_to','valid_to',$d
 
 <p>
 
-
-
-<button class="button" id="bookit_search_button"  onclick="<?php echo "return submitbutton('send','".$d1."')";?>"><?php echo JText::_('Search'); ?>
-
-</button>
+	<button class="button" id="bookit_search_button"  onclick="<?php echo "return submitbutton('send','".$d1."')";?>"><?php echo JText::_('Search'); ?></button>
 
 </p>
 
@@ -331,32 +323,22 @@ echo JHTML::_( 'calendar',date($d1,strtotime("+ 6day")),'valid_to','valid_to',$d
 
 
 <div id="bookit_search_calendar_div">
-
-<div id="calback">
-
+	<div id="calback">
 		<div id="calendar"></div>
-
-		</div>
-
+	</div>
 </div>
 
 <div id="bookit_search_clear"></div>
 
 
-
-
-
-
-
 </fieldset>
-
 
 
 <div id="bookit_search_results" style="visibility:hidden">
 
 <fieldset class="bookit_search_fieldset">
 
-	<legend class="bookit_search_legent"><?php echo JText::_("Search Results");?></legend>
+	<legend class="bookit_search_legent"><?php echo JText::_("Availability");?></legend>
 
 		<div id="bookit_search_result_found"></div>
 
