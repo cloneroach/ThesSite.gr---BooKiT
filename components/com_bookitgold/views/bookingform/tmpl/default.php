@@ -108,8 +108,8 @@ else if ($dateformatcode==2)
 }
 
 // Deposit Percentage
-$deposit_percent = floatval(30);
-$deposit_fixed = floatval(0);
+//$deposit_percent = floatval(30);
+//$deposit_fixed = floatval(0);
 
 // ToC
 $booking_pay_date = date( $d1, strtotime("+2 day") );
@@ -134,6 +134,8 @@ $cancellation_policy .= " ".$cancel_date_3.", ";
 $cancellation_policy .= JText::_('50% of your deposit may be refunded. While from');
 $cancellation_policy .= " ".$cancel_date_4." ";
 $cancellation_policy .= JText::_("your deposit is not refundable.");
+
+$price_per_n = $this->price / $this-nnights;
 
 /* End of Thessite code */
 
@@ -531,7 +533,7 @@ if( $total_guests > $capacity ){
 <?php } ?>
 
 
-<div class="bookit_booking_right_td"><?php echo $this->price." ".$this->currency;?></div>
+<div class="bookit_booking_right_td"><?php echo $this->price." ".$this->currency." Price per night it's: ".$price_per_n;?></div>
 <?php
 
 // Thessite - Calculate the price for the extra persons and show it to the guest.
@@ -776,6 +778,17 @@ $total_price = $total_price + $new_price;
 </div>
 
 </div>
+<?php 
+/* Ypologismos tou posou pou prokatabalei
+ * Ean minei gia 1 mexri 4 imeres, dinei to poso pou antistixei se 1 bradia
+ * Ean minei gia 4+ imeres, dinei to 25% pou antistixei sto kostos tis diamonis 
+ */
+if( $this->nnights > 4 ){
+	$deposit_percent = 0;
+	$deposit_fixed = $price_per_n;
+}
+
+?>
 
 <?php if ($deposit_percent>0 || $deposit_fixed>0) {?>
 
