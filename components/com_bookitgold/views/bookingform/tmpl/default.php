@@ -786,7 +786,7 @@ $total_price = $total_price + $new_price;
  * Ean minei gia 1 mexri 4 imeres, dinei to poso pou antistixei se 1 bradia
  * Ean minei gia 4+ imeres, dinei to 25% pou antistixei sto kostos tis diamonis 
  */
-if( $this->nnights > 4 ){
+if( $this->nnights <= 4 ){
 	$deposit_percent = 0;
 	$deposit_fixed = $price_per_n;
 } else {
@@ -810,7 +810,7 @@ if( $this->nnights > 4 ){
 if ($deposit_percent>0) {
 	
 	$teliko_poso = $total_price * $deposit_percent / 100;
-	$rounded = round($teliko_poso, 0, PHP_ROUND_HALF_DOWN); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
+	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
 	echo $rounded." ".$this->currency;
 	//echo $total_price*$deposit_percent/100 ." ".$this->currency;
 
