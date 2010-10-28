@@ -526,6 +526,8 @@ switch( $typos_dwmatiou ) {
 	case "Bungalow": $capacity = 2;
 	case "Guest Room": $capanity = 2;
 }
+
+$new_extra_ppl = 0;
 if( $total_guests > $capacity ) {
 	$extra_ppl = $total_guests - $capacity;
 	if( $extra_ppl < 0 ){
