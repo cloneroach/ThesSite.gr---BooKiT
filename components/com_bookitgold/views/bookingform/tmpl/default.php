@@ -607,6 +607,11 @@ for ($i=0; $i<count($pref_array); $i++)
 <div class="bookit_booking_clear"></div>
 
 <div class="bookit_booking_review_header"><?php echo JText::_("Extra Services");//echo JText::_("Taxes / Extra Services");?>
+<div id="bookit_booking_pref_requests">
+<?php
+echo JText::_("In an attempt to make your stay as comfortable as possible, a list of extra services is given below for you to choose the one(s) that meet your needs and expectations");
+?>
+</div>
 
 <br />
 
@@ -699,12 +704,6 @@ for ($i=0; $i<count($extra_array); $i++)
 }
 
 ?></div>
-<div id="bookit_booking_pref_requests">
-<?php
-echo JText::_("In an attempt to make your stay as comfortable as possible, a list of extra services is given below for you to choose the one(s) that meet your needs and expectations");
-?>
-</div>
-
 
 <div class="bookit_booking_clear"></div>
 
