@@ -561,70 +561,6 @@ if( $total_guests > $capacity ) {
 
 </div>
 
-
-
-<div class="bookit_booking_clear"></div>
-
-<div class="bookit_booking_review_header"><?php echo JText::_("Booking Preferences");?>
-
-<br />
-
-<?php
-
-for ($i=0; $i<count($pref_array); $i++)
-
-{
-
-	$box_id="prefbox_".$pref_array[$i]->idextra;
-
-	$qnt_box_id="qntprefbox_".$pref_array[$i]->idextra;
-
-	$qnt_div="";
-
-	if ($pref_array[$i]->value_type==8 || $pref_array[$i]->value_type==9) //Quantity
-
-	{
-
-		$js1='onClick="return (setQuantityOnly(\'plus\', \''.$qnt_box_id.'\'));"';
-
-		$js2='onClick="return (setQuantityOnly(\'minus\', \''.$qnt_box_id.'\'));"';
-
-		$plus_but="<button class='button' ".$js1.">+</button>";
-
-		$minus_but="<button class='button' ".$js2.">-</button>";
-
-		$qnt_div="<div class='bookit_booking_pref_qnt'> <input type='text' size='1' maxlength='3' value='1' readonly='readonly' id='".$qnt_box_id."'/>".
-
-		$plus_but.$minus_but."</div>";		
-
-	}
-
-	echo "<div class='bookit_booking_pref_left'> <input type='checkbox' name='extra_box' id='".$box_id."'>".$pref_array[$i]->name.$qnt_div."</div>";
-
-	echo "<div class='bookit_booking_pref_left_desc'>".$extra_array[$i]->description."</div>";
-
-}
-
-?>
-
-
-
-</div>
-
-
-
-<div class="bookit_booking_clear"></div>
-
-<div id="bookit_booking_pref_requests">
-
-<?php echo JText::_('Guest Comments / Special Requests'); ?><br />
-
-<textarea rows="4" cols="32" name="preferences" id="preferences"></textarea>
-
-</div>
-
-
-
 <div class="bookit_booking_clear"></div>
 
 <div class="bookit_booking_review_header"><?php echo JText::_("Extra Services");//echo JText::_("Taxes / Extra Services");?>
@@ -727,6 +663,62 @@ for ($i=0; $i<count($extra_array); $i++)
 }
 
 ?></div>
+
+<div class="bookit_booking_clear"></div>
+
+<div class="bookit_booking_review_header"><?php echo JText::_("Booking Preferences");?>
+
+<br />
+
+<?php
+
+for ($i=0; $i<count($pref_array); $i++)
+
+{
+
+	$box_id="prefbox_".$pref_array[$i]->idextra;
+
+	$qnt_box_id="qntprefbox_".$pref_array[$i]->idextra;
+
+	$qnt_div="";
+
+	if ($pref_array[$i]->value_type==8 || $pref_array[$i]->value_type==9) //Quantity
+
+	{
+
+		$js1='onClick="return (setQuantityOnly(\'plus\', \''.$qnt_box_id.'\'));"';
+
+		$js2='onClick="return (setQuantityOnly(\'minus\', \''.$qnt_box_id.'\'));"';
+
+		$plus_but="<button class='button' ".$js1.">+</button>";
+
+		$minus_but="<button class='button' ".$js2.">-</button>";
+
+		$qnt_div="<div class='bookit_booking_pref_qnt'> <input type='text' size='1' maxlength='3' value='1' readonly='readonly' id='".$qnt_box_id."'/>".
+
+		$plus_but.$minus_but."</div>";		
+
+	}
+
+	echo "<div class='bookit_booking_pref_left'> <input type='checkbox' name='extra_box' id='".$box_id."'>".$pref_array[$i]->name.$qnt_div."</div>";
+
+	echo "<div class='bookit_booking_pref_left_desc'>".$extra_array[$i]->description."</div>";
+
+}
+
+?>
+
+</div>
+
+<div class="bookit_booking_clear"></div>
+
+<div id="bookit_booking_pref_requests">
+
+<?php echo JText::_('Guest Comments / Special Requests'); ?><br />
+
+<textarea rows="4" cols="32" name="preferences" id="preferences"></textarea>
+
+</div>
 
 <div class="bookit_booking_clear"></div>
 
