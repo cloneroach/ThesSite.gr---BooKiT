@@ -452,6 +452,10 @@ $extra_ppl = 0;
 $new_price = 0;
 $total_guests = $l_childs + $n_childs + $n_guests;
 
+//$sql_q = 'SELECT * FROM #__bookitcategory';
+//$category_array = $db->loadObjectList();
+
+//$db->setQuery($sql_q);
 
 ?>
 
@@ -512,9 +516,22 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 <?php
 
 // Thessite - Calculate the price for the extra persons and show it to the guest.
-if( $total_guests > 4 ) { //
-	$extra_ppl = $total_guests - 4;
-	$new_price = 6 * ( $this->nnights * $extra_ppl );
+//if( $total_guests > 4 ) { //
+//	$extra_ppl = $total_guests - 4;
+//	$new_price = 6 * ( $this->nnights * $extra_ppl );
+switch( $this->category_name ) {
+	case "Studio": $capacity = 2;
+	case "Apartment": $capacity = 4;
+	case "Bungalow": $capacity = 2;
+	case "Guest Room": $capanity = 2;
+}
+if( $total_guests > $capacity ) {
+	$extra_ppl = $total_guests - $capacity;
+	if( $capacity < 0 ){
+		$new_extra_ppl = abs($extra_ppl); // Elegxei an einai arnitikos ari8mos kai ton antistrefei se 8etiko [ -2 se 2 ]
+	}s
+	$new_price = 6 * ($this->nnights * $new_extra_ppl);
+}
 ?>
 	<div class="bookit_booking_right_td"><?php echo JText::_($new_price." ".$this->currency." (6 ".$this->currency." / Night)");?></div>
 <?php } ?>
