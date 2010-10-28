@@ -312,9 +312,8 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <?php //Script to Show/Hide <divs> ?>
 <div id="bookit_final_pcode_right" class="bookit_final_right">
-	<select onchange="show(this)" class="bookit_final_input" name="pay_method" id="pay_method" disabled="disabled">
-    	<option value="UnderDev" selected="selected">NYI - Under Develop</option>
-    	<option value="0"><?php echo JText::_("-Select Method-"); ?></option>
+	<select onchange="show(this)" class="bookit_final_input" name="pay_method" id="pay_method">
+    	<option value="0" selected="selected"><?php echo JText::_("-Select Method-"); ?></option>
     	<option value="1"><?php echo JText::_("Deposit to Bank Account"); ?></option>
 		<option value="2"><?php echo JText::_("Credit Card"); ?></option>
 	</select>
@@ -350,10 +349,14 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div id="bookit_final_ccno_right_error" class="bookit_final_error" style="display: none;">
 <?php echo JText::_("Please type your card number.");?>
 </div>
-<div class="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Card Type").$star; ?>
+<div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Card Type").$star; ?></div>
+<div class="bookit_final_pcode_right" id="bookit_final_right">
 	<select class="bookit_final_input" name="card_type" id="card_type">
 		<option value="Visa">Visa</option>
 		<option value="Mastercard">Mastercard</option>
+		<option value="AmericanEx">American Express</option>
+		<option value="Discover">Discover</option>
+		<option value="Diners">Diners</option>
 	</select>
 </div>
 <div id="bookit_final_cardtype_right_error" class="bookit_final_error" style="display: none;">
@@ -465,7 +468,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div id="bookit_final_clear"></div>	
 
 <?php 
-//$paypal_mail = 'renji@thessite.gr'; // Thessite - Bypass the error with joomfish getting the params from the components table. 
+$paypal_mail = ''; // Thessite - Bypass the error with joomfish getting the params from the components table. 
 
 if ($paypal_mail!="" && $this->deposit>0 && $this->currency!=""){?>
 
@@ -526,7 +529,7 @@ function show( obj ){
 	for(i = 1 ; i <= count ; i++){
 		document.getElementById('payMethod'+i).style.display = 'none';
 		if(no > 0){
-			document.getElementById('payMethod'+no).style.display = 'block';
+			document.getElementById('payMethod'+no).style.display = 'inline';
 		}
 	}
 }
@@ -696,20 +699,20 @@ function formValidation ()
 	cityErrorDiv.style.display="none";
 
 	
-if( pay_MethodField.value == "" )
-	pay_MethodErrorDiv.style.display=="inline";
+	if( pay_MethodField.value=="0" )
+		pay_MethodErrorDiv.style.display=="inline";
 
-	else if( pay_MethodField.value == "2" )
-		if( ccnoField.value == "" )
+	else if( pay_MethodField.value=="2" )
+		if( isValidCreditCard(card_typeField, ccnoField) )
 			ccnoErrorDiv.style.display=="inline";
-		else if( (exp_monthField.value == "") || ( exp_yearField == "" ) )
+		else if( (exp_monthField.value=="") || ( exp_yearField=="" ) )
 			expiryrErrorDiv.style.display = "inline";
-		else if( card_typeField.value == "" )
+		else if( card_typeField.value=="" )
 			card_typeErrorDiv.style.display == "inline";
 
 
 
-	if (nameField.value=="")
+	else if (nameField.value=="")
 
 		nameErrorDiv.style.display="inline";
 		
@@ -822,6 +825,40 @@ function isValidEmail ()
 
 	
 
+}
+// CC Validation Script
+function isValidCreditCard(card_typeField, ccnoField) {
+   if (card_typeField == "Visa") {
+      // Visa: length 16, prefix 4, dashes optional.
+      var re = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
+   } else if (card_typeField == "Mastercard") {
+      // Mastercard: length 16, prefix 51-55, dashes optional.
+      var re = /^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
+   } else if (card_typeField == "Discover") {
+      // Discover: length 16, prefix 6011, dashes optional.
+      var re = /^6011-?\d{4}-?\d{4}-?\d{4}$/;
+   } else if (card_typeField == "AmericanEx") {
+      // American Express: length 15, prefix 34 or 37.
+      var re = /^3[4,7]\d{13}$/;
+   } else if (card_typeField == "Diners") {
+      // Diners: length 14, prefix 30, 36, or 38.
+      var re = /^3[0,6,8]\d{12}$/;
+   }
+   if (!re.test(ccnoField)) return false;
+   // Remove all dashes for the checksum checks to eliminate negative numbers
+   ccnoField = ccnoField.split("-").join("");
+   // Checksum ("Mod 10")
+   // Add even digits in even length strings or odd digits in odd length strings.
+   var checksum = 0;
+   for (var i=(2-(ccnoField.length % 2)); i<=ccnoField.length; i+=2) {
+      checksum += parseInt(ccnoField.charAt(i-1));
+   }
+   // Analyze odd digits in even length strings or even digits in odd length strings.
+   for (var i=(ccnoField.length % 2) + 1; i<ccnoField.length; i+=2) {
+      var digit = parseInt(ccnoField.charAt(i-1)) * 2;
+      if (digit < 10) { checksoField += digit; } else { checksum += (digit-9); }
+   }
+   if ((checksum % 10) == 0) return true; else return false;
 }
 
 
@@ -1159,33 +1196,24 @@ function makeBooking (){
 
 		url += "&idcategory="+idcategory_js+"&valid_from="+valid_from_js+"&valid_to="+valid_to_js+"&nguests="+nguests_js;
 
-		url += "&lchilds="+lchilds_js+"&nchilds="+nchilds_js+"&price="+price_js+"&deposit="+deposit_js+"&extra_ids="+extra_ids_js+"&name="+name_js+"&coupon_code="+coupon_code_js; // Thessite
+		url += "&nchilds="+nchilds_js+"&price="+price_js+"&deposit="+deposit_js+"&extra_ids="+extra_ids_js+"&name="+name_js+"&coupon_code="+coupon_code_js;
 
 		url += "&surname="+surname_js+"&email="+email_js+"&phone="+phone_js+"&idcountry="+country_js+"&addr="+addr_js+"&city="+city_js;
 
 		url += "&addr2="+addr2_js+"&pcode="+pcode_js+"&preferences="+preferences_js;
 
-
-
+		// Thessite Additions for Childs / Pay Method - Credit Card
+		url += "&lchilds="+lchilds_js+"&ccno="+ccno_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&card_type="+card_type_js+"&pay_method="+pay_method_js;
 
 
 		xmlhttp.open("GET",url,true);	
 
 		xmlhttp.send(null);
-
 		
 
 		return false;
 
-
-
 }
-
-
-
-	
-
-
 
 	function GetXmlHttpObject()
 
@@ -1216,4 +1244,3 @@ function makeBooking (){
 	}
 
 </script>
-
