@@ -135,7 +135,10 @@ $cancellation_policy .= JText::_('50% of your deposit may be refunded. While fro
 $cancellation_policy .= " ".$cancel_date_4." ";
 $cancellation_policy .= JText::_("your deposit is not refundable.");
 
-$price_per_n = $this->price / $this-nnights;
+$timi = $this->price;
+$nuxtes = $this->nnights;
+
+$price_per_n = $timi / $nuxtes;
 
 /* End of Thessite code */
 
@@ -533,7 +536,7 @@ if( $total_guests > $capacity ){
 <?php } ?>
 
 
-<div class="bookit_booking_right_td"><?php echo $this->price." ".$this->currency." Price per night it's: ".$price_per_n;?></div>
+<div class="bookit_booking_right_td"><?php echo $this->price." ".$this->currency;?></div>
 <?php
 
 // Thessite - Calculate the price for the extra persons and show it to the guest.
@@ -786,6 +789,10 @@ $total_price = $total_price + $new_price;
 if( $this->nnights > 4 ){
 	$deposit_percent = 0;
 	$deposit_fixed = $price_per_n;
+} else {
+	$deposit_percent = floatval(25);
+	$deposit_fixed = 0;
+	
 }
 
 ?>
@@ -800,13 +807,19 @@ if( $this->nnights > 4 ){
 
 <div id="bookit_booking_deposit" class='bookit_booking_final_price'><?php 
 
-if ($deposit_percent>0)
+if ($deposit_percent>0) {
+	
+	$teliko_poso = $total_price * $deposit_percent / 100;
+	$rounded = round($teliko_poso, 0, PHP_ROUND_HALF_DOWN); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
+	echo $rounded." ".$this->currency;
+	//echo $total_price*$deposit_percent/100 ." ".$this->currency;
 
-	echo $total_price*$deposit_percent/100 ." ".$this->currency;
+} else {
+	if ($deposit_fixed>0){
 
-else if ($deposit_fixed>0)
-
-	echo $deposit_fixed ." ".$this->currency;
+		echo $deposit_fixed ." ".$this->currency;
+	}
+}
 
 ?></div>
 
