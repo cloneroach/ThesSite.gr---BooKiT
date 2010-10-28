@@ -111,11 +111,6 @@ else if ($dateformatcode==2)
 //$deposit_percent = floatval(30);
 //$deposit_fixed = floatval(0);
 
-// ToC
-$booking_pay_date = date( $d1, strtotime("+2 day") );
-$terms_conditions = JText::_('For your booking confirmation you have to deposit 30% of the total price of your reservation until');
-$terms_conditions .= " ".$booking_pay_date.".";
-
 // Cancellation Policy
 $dateformatcode = $params->get('dateformat');
 
@@ -781,10 +776,26 @@ $total_price = $total_price + $new_price;
 if( $this->nnights <= 4 ){
 	$deposit_percent = 0;
 	$deposit_fixed = $price_per_n;
+	// ToC
+	$booking_pay_date = date( $d1, strtotime("+2 day") );
+	$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	$terms_conditions .= $price_per_n;
+	$terms_conditions .= " ".$this->currency." ".JText::_('until');
+	$terms_conditions .= " ".$booking_pay_date.".";
+	$terms_conditions .= "<br />".JText::_('(amount that equals one night stay)');
+	
 } else {
 	$deposit_percent = floatval(25);
 	$deposit_fixed = 0;
-	
+	$teliko_poso = $total_price * $deposit_percent / 100;
+	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
+	// ToC
+	$booking_pay_date = date( $d1, strtotime("+2 day") );
+	$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	$terms_conditions .= $rounded;
+	$terms_conditions .= " ".$this->currency." ".JText::_('until');
+	$terms_conditions .= " ".$booking_pay_date.".";
+	$terms_conditions .= "<br />".JText::_('(amount that equals 25% of you total stay)');
 }
 
 ?>
@@ -801,8 +812,8 @@ if( $this->nnights <= 4 ){
 
 if ($deposit_percent>0) {
 	
-	$teliko_poso = $total_price * $deposit_percent / 100;
-	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
+//	$teliko_poso = $total_price * $deposit_percent / 100;
+//	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
 	echo $rounded." ".$this->currency;
 	//echo $total_price*$deposit_percent/100 ." ".$this->currency;
 
