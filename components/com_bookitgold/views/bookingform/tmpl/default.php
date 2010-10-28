@@ -532,7 +532,7 @@ if( $total_guests > $capacity ) {
 		$new_extra_ppl = abs($extra_ppl); // Elegxei an einai arnitikos ari8mos kai ton antistrefei se 8etiko [ -2 se 2 ]
 	}
 	$new_price = 6 * ($this->nnights * $new_extra_ppl);
-}
+
 ?>
 	<div class="bookit_booking_right_td"><?php echo JText::_($new_price." ".$this->currency." (6 ".$this->currency." / Night)");?></div>
 <?php } ?>
