@@ -528,7 +528,7 @@ switch( $typos_dwmatiou ) {
 }
 if( $total_guests > $capacity ) {
 	$extra_ppl = $total_guests - $capacity;
-	if( $capacity < 0 ){
+	if( $extra_ppl < 0 ){
 		$new_extra_ppl = abs($extra_ppl); // Elegxei an einai arnitikos ari8mos kai ton antistrefei se 8etiko [ -2 se 2 ]
 	}
 	$new_price = 6 * ($this->nnights * $new_extra_ppl);
