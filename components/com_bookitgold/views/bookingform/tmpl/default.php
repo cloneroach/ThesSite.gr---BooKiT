@@ -519,7 +519,8 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 //if( $total_guests > 4 ) { //
 //	$extra_ppl = $total_guests - 4;
 //	$new_price = 6 * ( $this->nnights * $extra_ppl );
-switch( $this->category_name ) {
+$typos_dwmatiou = $this->category_name;
+switch( $typos_dwmatiou ) {
 	case "Studio": $capacity = 2;
 	case "Apartment": $capacity = 4;
 	case "Bungalow": $capacity = 2;
@@ -529,7 +530,7 @@ if( $total_guests > $capacity ) {
 	$extra_ppl = $total_guests - $capacity;
 	if( $capacity < 0 ){
 		$new_extra_ppl = abs($extra_ppl); // Elegxei an einai arnitikos ari8mos kai ton antistrefei se 8etiko [ -2 se 2 ]
-	}s
+	}
 	$new_price = 6 * ($this->nnights * $new_extra_ppl);
 }
 ?>
