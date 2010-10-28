@@ -452,6 +452,14 @@ $extra_ppl = 0;
 $new_price = 0;
 $total_guests = $l_childs + $n_childs + $n_guests;
 
+$typos_dwmatiou = $this->category_name;
+switch( $typos_dwmatiou ) {
+	case "Studio": $capacity = 2;
+	case "Apartment": $capacity = 4;
+	case "Bungalow": $capacity = 2;
+	case "Guest Room": $capanity = 2;
+}
+
 //$sql_q = 'SELECT * FROM #__bookitcategory';
 //$category_array = $db->loadObjectList();
 
@@ -485,7 +493,10 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 	<div class="bookit_booking_left_td"><?php echo JText::_("Childern, 6 to 12 years old"); // Thessite?></div>
 <?php } ?>
 <div class="bookit_booking_left_td"><?php echo JText::_("Price");?></div>
-<?php if( $total_guests > 4 ) { ?>
+<?php
+//if( $total_guests > 4 ) {
+if( $total_guests > $capacity ){
+	?>
 	<div class="bookit_booking_left_td"><?php echo JText::_("Price for the extra person");?></div>
 <? } ?>
  
@@ -519,13 +530,6 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 //if( $total_guests > 4 ) { //
 //	$extra_ppl = $total_guests - 4;
 //	$new_price = 6 * ( $this->nnights * $extra_ppl );
-$typos_dwmatiou = $this->category_name;
-switch( $typos_dwmatiou ) {
-	case "Studio": $capacity = 2;
-	case "Apartment": $capacity = 4;
-	case "Bungalow": $capacity = 2;
-	case "Guest Room": $capanity = 2;
-}
 
 $new_extra_ppl = 0;
 if( $total_guests > $capacity ) {
