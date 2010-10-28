@@ -454,10 +454,18 @@ $total_guests = $l_childs + $n_childs + $n_guests;
 
 $typos_dwmatiou = $this->category_name;
 switch( $typos_dwmatiou ) {
-	case "Studio": $capacity = 2;
-	case "Apartment": $capacity = 4;
-	case "Bungalow": $capacity = 2;
-	case "Guest Room": $capanity = 2;
+	case "Studio":
+		$capacity = 2;
+		break;
+	case "Apartment":
+		$capacity = 4;
+		break;
+	case "Bungalow":
+		$capacity = 2;
+		break;
+	case "Guest Room":
+		$capacity = 2;
+		break;
 }
 
 //$sql_q = 'SELECT * FROM #__bookitcategory';
@@ -750,14 +758,14 @@ for ($i=0; $i<count($extra_array); $i++)
 ** If so, add +6 euros for each person and each night
 ** at the total_price
 */
-if( $total_guests > 4 ) {
-	
-	$extra_ppl = $total_guests - 4;
-	$new_price = 6 * ( $this->nnights * $extra_ppl );
-	$total_price = $total_price + $new_price;
-	
-}
-
+//if( $total_guests > 4 ) {
+//	
+//	$extra_ppl = $total_guests - 4;
+//	$new_price = 6 * ( $this->nnights * $extra_ppl );
+//	$total_price = $total_price + $new_price;
+//	
+//}
+$total_price = $total_price + $new_price;
 /*
 ** End of Thessite Code
 */
