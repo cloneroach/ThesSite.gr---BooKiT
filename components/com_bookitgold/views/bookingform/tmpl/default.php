@@ -107,10 +107,6 @@ else if ($dateformatcode==2)
 	$d2='%m/%d/%Y';
 }
 
-// Deposit Percentage
-//$deposit_percent = floatval(30);
-//$deposit_fixed = floatval(0);
-
 // Cancellation Policy
 $dateformatcode = $params->get('dateformat');
 
@@ -136,40 +132,6 @@ $nuxtes = $this->nnights;
 $price_per_n = $timi / $nuxtes;
 
 /* End of Thessite code */
-
-/*if ($dateformatcode==""||$dateformatcode==3)
-
-{
-
-	$d1='d-m-Y';
-
-	$d2='%d-%m-%Y';
-
-}
-
-else if ($dateformatcode==1)
-
-{
-
-	$d1='Y-m-d';
-
-	$d2='%Y-%m-%d';
-
-}
-
-else if ($dateformatcode==2)
-
-{
-
-	$d1='m/d/Y';
-
-	$d2='%m/%d/%Y';
-
-}
-*/
-
-
-
 
 if ($this->nnights>1)
 
@@ -468,11 +430,6 @@ switch( $typos_dwmatiou ) {
 		break;
 }
 
-//$sql_q = 'SELECT * FROM #__bookitcategory';
-//$category_array = $db->loadObjectList();
-
-//$db->setQuery($sql_q);
-
 ?>
 
 
@@ -535,10 +492,6 @@ if( $total_guests > $capacity ){
 <?php
 
 // Thessite - Calculate the price for the extra persons and show it to the guest.
-//if( $total_guests > 4 ) { //
-//	$extra_ppl = $total_guests - 4;
-//	$new_price = 6 * ( $this->nnights * $extra_ppl );
-
 $new_extra_ppl = 0;
 if( $total_guests > $capacity ) {
 	$extra_ppl = $total_guests - $capacity;
@@ -750,13 +703,7 @@ for ($i=0; $i<count($pref_array); $i++)
 ** If so, add +6 euros for each person and each night
 ** at the total_price
 */
-//if( $total_guests > 4 ) {
-//	
-//	$extra_ppl = $total_guests - 4;
-//	$new_price = 6 * ( $this->nnights * $extra_ppl );
-//	$total_price = $total_price + $new_price;
-//	
-//}
+
 $total_price = $total_price + $new_price;
 /*
 ** End of Thessite Code
@@ -812,10 +759,7 @@ if( $this->nnights <= 4 ){
 
 if ($deposit_percent>0) {
 	
-//	$teliko_poso = $total_price * $deposit_percent / 100;
-//	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
 	echo $rounded." ".$this->currency;
-	//echo $total_price*$deposit_percent/100 ." ".$this->currency;
 
 } else {
 	if ($deposit_fixed>0){
