@@ -307,20 +307,20 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		font-family: verdana; 
 		font-size: 10px; 
 		background-color: #FFFFFF;' align='center'>
-	<tr>
-<th style='background:#e8f1fa; color:#000; padding:8px; text-align:left;'>
-".$tile."<br />
-".$intro1."<br />
-".$keimeno."<br />
-</th>
-</tr>
-<tr align='center' valign='middle' bgcolor='#859032'>
-<td bgcolor='#AFAFAF'><span style='font-family: verdana;
+		<tr>
+		<th style='background:#e8f1fa; color:#000; padding:8px; text-align:left;'>
+			".$title."<br />
+			".$intro1."<br />
+			".$keimeno."<br />
+		</th>
+		</tr>
+		<tr align='center' valign='middle' bgcolor='#859032'>
+		<td bgcolor='#AFAFAF'><span style='font-family: verdana;
 					font-size: 10px;
 					font-weight: normal;
 					color: #FFFFFF;'>".$cop." &copy; ".$companyName."</span>".$thessite."</td>
-</tr>
-</table>";
+		</tr>
+		</table>";
 
 		/* End of Thessite Code */
 
@@ -736,20 +736,22 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		 * Ean minei gia 1 mexri 4 imeres, dinei to poso pou antistixei se 1 bradia
 		 * Ean minei gia 4+ imeres, dinei to 25% pou antistixei sto kostos tis diamonis
 		 */
-		$timi = $this->price;
-		$nuxtes = $this->nnights;
+		//$timi = $this->price;
+		//$nuxtes = $this->nnights;
 
-		$price_per_n = $timi / $nuxtes;
+		//$price_per_n = $timi / $nuxtes;
+		$price_per_n = $price / $nights;
 
 
-		if( $this->nnights <= 4 ){
+		//if( $this->nnights <= 4 ){
+		if( $nights <= 4 ){
 			$deposit_percent = 0;
 			$deposit_fixed = $price_per_n;
 			// ToC
 			$booking_pay_date = date( $d1, strtotime("+2 day") );
 			$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
 			$terms_conditions .= $price_per_n;
-			$terms_conditions .= " ".$this->currency." ".JText::_('until');
+			$terms_conditions .= " EUR ".JText::_('until');
 			$terms_conditions .= " ".$booking_pay_date.".";
 			$terms_conditions .= "<br />".JText::_('(amount that equals one night stay)');
 
@@ -762,7 +764,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$booking_pay_date = date( $d1, strtotime("+2 day") );
 			$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
 			$terms_conditions .= $rounded;
-			$terms_conditions .= " ".$this->currency." ".JText::_('until');
+			$terms_conditions .= " EUR ".JText::_('until');
 			$terms_conditions .= " ".$booking_pay_date.".";
 			$terms_conditions .= "<br />".JText::_('(amount that equals 25% of you total stay)');
 		}
