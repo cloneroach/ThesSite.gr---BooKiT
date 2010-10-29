@@ -313,7 +313,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <?php //Script to Show/Hide <divs> ?>
 <div id="bookit_final_pcode_right" class="bookit_final_right">
 	<select onchange="show(this)" class="bookit_final_input" name="pay_method" id="pay_method">
-    	<option value="0" selected="selected"><?php echo JText::_("-Select Method-"); ?></option>
+<!--    	<option value="0" selected="selected"><?php //echo JText::_("-Select Method-"); ?></option> -->
     	<option value="1"><?php echo JText::_("Deposit to Bank Account"); ?></option>
 		<option value="2"><?php echo JText::_("Credit Card"); ?></option>
 	</select>
@@ -324,7 +324,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <div id="bookit_final_clear"></div>
 
-<div id="payMethod1" style="display:none">
+<div id="payMethod1" style="display: none;">
     <div class="bookit_payment_header"><?php echo JText::_("Deposit to Bank Account")?></div>
     <div class="bookit_payment_txt">
     <?php
@@ -342,7 +342,10 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <div id="bookit_final_clear"></div>
 
-<div id="payMethod2" style="display:none">
+<div id="payMethod0" style="display: none;"></div>
+<div id="bookit_final_clear"></div>
+
+<div id="payMethod2" style="display: none;">
 <div class="bookit_payment_header"><?php echo JText::_("Credit Card Payment");?></div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Credit Card Number").$star; ?></div>
 <div class="bookit_final_pcode_right" id="bookit_final_right"><input type="text" name="ccno" id="ccno" class="bookit_final_input" /></div>
@@ -353,9 +356,9 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div class="bookit_final_pcode_right" id="bookit_final_right">
 	<select class="bookit_final_input" name="card_type" id="card_type">
 		<option value="Visa">Visa</option>
-		<option value="Mastercard">Mastercard</option>
-		<option value="AmericanEx">American Express</option>
-		<option value="Discover">Discover</option>
+		<option value="MC">Mastercard</option>
+		<option value="AmEx">American Express</option>
+		<option value="Disc">Discover</option>
 		<option value="Diners">Diners</option>
 	</select>
 </div>
@@ -529,7 +532,7 @@ function show( obj ){
 	for(i = 1 ; i <= count ; i++){
 		document.getElementById('payMethod'+i).style.display = 'none';
 		if(no > 0){
-			document.getElementById('payMethod'+no).style.display = 'inline';
+			document.getElementById('payMethod'+no).style.display = 'block';
 		}
 	}
 }
@@ -703,12 +706,16 @@ function formValidation ()
 		pay_MethodErrorDiv.style.display=="inline";
 
 	else if( pay_MethodField.value=="2" )
-		if( isValidCreditCard(card_typeField, ccnoField) )
+		if( !isValidCreditCard(card_typeField, ccnoField) ){
 			ccnoErrorDiv.style.display=="inline";
-		else if( (exp_monthField.value=="") || ( exp_yearField=="" ) )
-			expiryrErrorDiv.style.display = "inline";
-		else if( card_typeField.value=="" )
-			card_typeErrorDiv.style.display == "inline";
+			return false;
+		} else {
+			return true;
+		}
+//	else if( (exp_monthField.value=="") || ( exp_yearField=="" ) )
+//		expiryErrorDiv.style.display = "inline";
+//	else if( card_typeField.value=="" )
+//		card_typeErrorDiv.style.display == "inline";
 
 
 
@@ -827,39 +834,40 @@ function isValidEmail ()
 
 }
 // CC Validation Script
-function isValidCreditCard(card_typeField, ccnoField) {
-   if (card_typeField == "Visa") {
+function isValidCreditCard(type, ccnum) {
+   if (type == "Visa") {
       // Visa: length 16, prefix 4, dashes optional.
       var re = /^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/;
-   } else if (card_typeField == "Mastercard") {
+   } else if (type == "MC") {
       // Mastercard: length 16, prefix 51-55, dashes optional.
       var re = /^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/;
-   } else if (card_typeField == "Discover") {
+   } else if (type == "Disc") {
       // Discover: length 16, prefix 6011, dashes optional.
       var re = /^6011-?\d{4}-?\d{4}-?\d{4}$/;
-   } else if (card_typeField == "AmericanEx") {
+   } else if (type == "AmEx") {
       // American Express: length 15, prefix 34 or 37.
       var re = /^3[4,7]\d{13}$/;
-   } else if (card_typeField == "Diners") {
+   } else if (type == "Diners") {
       // Diners: length 14, prefix 30, 36, or 38.
       var re = /^3[0,6,8]\d{12}$/;
    }
-   if (!re.test(ccnoField)) return false;
+   if (!re.test(ccnum)) return false;
    // Remove all dashes for the checksum checks to eliminate negative numbers
-   ccnoField = ccnoField.split("-").join("");
+   ccnum = ccnum.split("-").join("");
    // Checksum ("Mod 10")
    // Add even digits in even length strings or odd digits in odd length strings.
    var checksum = 0;
-   for (var i=(2-(ccnoField.length % 2)); i<=ccnoField.length; i+=2) {
-      checksum += parseInt(ccnoField.charAt(i-1));
+   for (var i=(2-(ccnum.length % 2)); i<=ccnum.length; i+=2) {
+      checksum += parseInt(ccnum.charAt(i-1));
    }
    // Analyze odd digits in even length strings or even digits in odd length strings.
-   for (var i=(ccnoField.length % 2) + 1; i<ccnoField.length; i+=2) {
-      var digit = parseInt(ccnoField.charAt(i-1)) * 2;
-      if (digit < 10) { checksoField += digit; } else { checksum += (digit-9); }
+   for (var i=(ccnum.length % 2) + 1; i<ccnum.length; i+=2) {
+      var digit = parseInt(ccnum.charAt(i-1)) * 2;
+      if (digit < 10) { checksum += digit; } else { checksum += (digit-9); }
    }
    if ((checksum % 10) == 0) return true; else return false;
 }
+
 
 
 
