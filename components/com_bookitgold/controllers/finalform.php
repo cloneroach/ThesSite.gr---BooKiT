@@ -71,6 +71,13 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$preferences  = JRequest::getVar('preferences');
 		$coupon_code =  JRequest::getVar('coupon_code');
 
+		// Thessite- PayMethod Vars
+		$ccno = JRequest::getVar('ccno');
+		$card_type = JRequest::getVar('card_type');
+		$pay_method = JRequest::getVar('pay_method');
+		$exp_year = JRequest::getVar('exp_year');
+		$exp_month = JRequest::getVar('exp_month');
+
 
 		$db =& JFactory::getDBO();
 		$params =& JComponentHelper::getParams('com_bookitgold');
@@ -147,6 +154,9 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$data->extra_ids = $extra_ids;
 		$data->preferences = $preferences;
 		$data->status = '2';
+
+		// Thessite - Push data for pay_method
+		//$data->pay_method = $pay_method;
 
 		$db = JFactory::getDBO();
 		$db->insertObject( '#__bookitbooking', $data, 'idbook' );
@@ -276,15 +286,23 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$cop =JText::_("Copyright");
 		$thessite = JText::_('<br /><a href="http://www.thessite.gr" target="_blank" style="font-size:10px; text-decoration:none">Design and Development by ThesSite.gr</a>');
 
-/* Start of Thessite Code
-** prwto e-mail ston pelati
-**/
-$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
-$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
-$keimeno .= JText::_('We look forward to welcoming you!');
+		/* Start of Thessite Code
+		 ** prwto e-mail ston pelati
+		 **/
+		if($pay_method == "1"){
+			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
+			$keimeno .= JText::_('We look forward to welcoming you!');
+		} else {
+			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
+			$keimeno .= JText::_('We look forward to welcoming you!');
+		}
 
 
-$mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
+
+
+		$mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
 		style='border: 1px solid #DEDEDE;
 		font-family: verdana; 
 		font-size: 10px; 
@@ -304,7 +322,7 @@ $mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
 </tr>
 </table>";
 
-/* End of Thessite Code */ 
+		/* End of Thessite Code */
 
 		//Accommodation Details
 		$accommodation_header=JText::_("Accommodation Details");
@@ -550,9 +568,9 @@ $mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
 		}
 		$cost_table .="</table>";
 
-		
-//		$cancellation_policy = $params->get('cancellation_policy');
-//		$terms_conditions = $params->get('terms_conditions');
+
+		//$cancellation_policy = $params->get('cancellation_policy');
+		//$terms_conditions = $params->get('terms_conditions');
 		$contact_details=$params->get('contact_details');
 		$email_logo = $params->get('email_logo');
 
@@ -649,50 +667,50 @@ $mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
 					color: #000033;'>".$cost_table."</p>
 				</td>
 				</tr>";
-				
-/* Start of Thessite code
-** Bypass the bug from Joomfish not getting the ToC / CP from
-** the table components, also deposit percentages
-*/
 
-// Deposit Percentage
-//$deposit_percent = floatval(30);
-//$deposit_fixed = floatval(0);
+		/* Start of Thessite code
+		 ** Bypass the bug from Joomfish not getting the ToC / CP from
+		 ** the table components, also deposit percentages
+		 */
 
-// Cancellation Policy
-$dateformatcode = $params->get('dateformat');
+		// Deposit Percentage
+		//$deposit_percent = floatval(30);
+		//$deposit_fixed = floatval(0);
 
-if ($dateformatcode==""||$dateformatcode==3){
-	$d1='d-m-Y';
-	$d2='%d-%m-%Y';
-}
-else if ($dateformatcode==1){
-	$d1='Y-m-d';
-	$d2='%Y-%m-%d';
-}
-else if ($dateformatcode==2){
-	$d1='m/d/Y';
-	$d2='%m/%d/%Y';
-}
+		// Cancellation Policy
+		$dateformatcode = $params->get('dateformat');
 
-//$afiksi = $this->valid_from;
-$afiksi = $valid_from;
-$cancel_date_1 = date($d1, strtotime("-20 day".$afiksi) ); // 100% pisw
-$cancel_date_2 = date($d1, strtotime("-19 day".$afiksi) ); // apo gia 50%
-$cancel_date_3 = date($d1, strtotime("-3 day".$afiksi) ); // mexri gia 50%
-$cancel_date_4 = date($d1, strtotime("-2 day".$afiksi) ); // 0% pisw
+		if ($dateformatcode==""||$dateformatcode==3){
+			$d1='d-m-Y';
+			$d2='%d-%m-%Y';
+		}
+		else if ($dateformatcode==1){
+			$d1='Y-m-d';
+			$d2='%Y-%m-%d';
+		}
+		else if ($dateformatcode==2){
+			$d1='m/d/Y';
+			$d2='%m/%d/%Y';
+		}
 
-$cancellation_policy = JText::_("Your deposit is fully refundable until");
-$cancellation_policy .= " ".$cancel_date_1.". ";
-$cancellation_policy .= JText::_("From");
-$cancellation_policy .= " ".$cancel_date_2." ";
-$cancellation_policy .= JText::_("until");
-$cancellation_policy .= " ".$cancel_date_3.", ";
-$cancellation_policy .= JText::_('50% of your deposit may be refunded. While from');
-$cancellation_policy .= " ".$cancel_date_4." ";
-$cancellation_policy .= JText::_("your deposit is not refundable.");
+		//$afiksi = $this->valid_from;
+		$afiksi = $valid_from;
+		$cancel_date_1 = date($d1, strtotime("-20 day".$afiksi) ); // 100% pisw
+		$cancel_date_2 = date($d1, strtotime("-19 day".$afiksi) ); // apo gia 50%
+		$cancel_date_3 = date($d1, strtotime("-3 day".$afiksi) ); // mexri gia 50%
+		$cancel_date_4 = date($d1, strtotime("-2 day".$afiksi) ); // 0% pisw
 
-/* End of Thessite code */
+		$cancellation_policy = JText::_("Your deposit is fully refundable until");
+		$cancellation_policy .= " ".$cancel_date_1.". ";
+		$cancellation_policy .= JText::_("From");
+		$cancellation_policy .= " ".$cancel_date_2." ";
+		$cancellation_policy .= JText::_("until");
+		$cancellation_policy .= " ".$cancel_date_3.", ";
+		$cancellation_policy .= JText::_('50% of your deposit may be refunded. While from');
+		$cancellation_policy .= " ".$cancel_date_4." ";
+		$cancellation_policy .= JText::_("your deposit is not refundable.");
+
+		/* End of Thessite code */
 
 		if ($cancellation_policy!="")
 		{
@@ -708,13 +726,48 @@ $cancellation_policy .= JText::_("your deposit is not refundable.");
 					color: #000000;'>".$cancellation_policy."</p></td>
   					</tr>";
 		}
-/* Start of Thessite code */
+		/* Start of Thessite code */
 
-$booking_pay_date = date( $d1, strtotime("+2 day") );
-$terms_conditions = JText::_('For your booking confirmation you have to deposit 30% of the total price of your reservation until');
-$terms_conditions .= " ".$booking_pay_date.".";
+		//$booking_pay_date = date( $d1, strtotime("+2 day") );
+		//$terms_conditions = JText::_('For your booking confirmation you have to deposit 30% of the total price of your reservation until');
+		//$terms_conditions .= " ".$booking_pay_date.".";
 
-/* End of Thessite code */
+		/* Ypologismos tou posou pou prokatabalei
+		 * Ean minei gia 1 mexri 4 imeres, dinei to poso pou antistixei se 1 bradia
+		 * Ean minei gia 4+ imeres, dinei to 25% pou antistixei sto kostos tis diamonis
+		 */
+		$timi = $this->price;
+		$nuxtes = $this->nnights;
+
+		$price_per_n = $timi / $nuxtes;
+
+
+		if( $this->nnights <= 4 ){
+			$deposit_percent = 0;
+			$deposit_fixed = $price_per_n;
+			// ToC
+			$booking_pay_date = date( $d1, strtotime("+2 day") );
+			$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+			$terms_conditions .= $price_per_n;
+			$terms_conditions .= " ".$this->currency." ".JText::_('until');
+			$terms_conditions .= " ".$booking_pay_date.".";
+			$terms_conditions .= "<br />".JText::_('(amount that equals one night stay)');
+
+		} else {
+			$deposit_percent = floatval(25);
+			$deposit_fixed = 0;
+			$teliko_poso = $total_price * $deposit_percent / 100;
+			$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
+			// ToC
+			$booking_pay_date = date( $d1, strtotime("+2 day") );
+			$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+			$terms_conditions .= $rounded;
+			$terms_conditions .= " ".$this->currency." ".JText::_('until');
+			$terms_conditions .= " ".$booking_pay_date.".";
+			$terms_conditions .= "<br />".JText::_('(amount that equals 25% of you total stay)');
+		}
+
+		/* End of Thessite code */
 		if ($terms_conditions!="")
 		{
 			$body .="  <tr bgcolor='#FFFFFF'>
@@ -729,25 +782,57 @@ $terms_conditions .= " ".$booking_pay_date.".";
 					color: #000000;'>".$terms_conditions."</p></td>
   					</tr>";
 		}
-		$bank_acc_deposit = JText::_("Deposit to Bank Account");
-		$bank_body = "<strong>".JText::_("National Bank of Greece")."</strong><br />";
-		$bank_body .= JText::_("<strong>Name:</strong> Sotiria Rentzika")."<br />";
-		$bank_body .= "<strong>".JText::_("Account").":</strong>"." 23774787719<br />";
-		$bank_body .= "<strong>".JText::_("IBAN").":</strong>"." GR4501102370000023774787719<br />";
-		$bank_body .= "<strong>".JText::_("BIC").":</strong>"." ETHNGRAA<br /><br />";
-		$bank_body .= JText::_("(Please note your name and Reference ID from the email you recieved).");
+		//		$bank_acc_deposit = JText::_("Deposit to Bank Account");
+		//		$bank_body = "<strong>".JText::_("National Bank of Greece")."</strong><br />";
+		//		$bank_body .= JText::_("<strong>Name:</strong> Sotiria Rentzika")."<br />";
+		//		$bank_body .= "<strong>".JText::_("Account").":</strong>"." 23774787719<br />";
+		//		$bank_body .= "<strong>".JText::_("IBAN").":</strong>"." GR4501102370000023774787719<br />";
+		//		$bank_body .= "<strong>".JText::_("BIC").":</strong>"." ETHNGRAA<br /><br />";
+		//		$bank_body .= JText::_("(Please note your name and Reference ID from the email you recieved).");
+		//
+		//		$body .= "  <tr bgcolor='#FFFFFF'>
+		//					<td align='left' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
+		//					<p style='font-family: verdana;
+		//					font-size: 10px;
+		//					font-weight: bold;
+		//					color: #000033;'>".$bank_acc_deposit."</p>
+		//      				<p style='font-family: verdana;
+		//					font-size: 10px;
+		//					font-weight: normal;
+		//					color: #000000;'>".$bank_body."</p></td>
+		//  					</tr>";
 
-		$body .= "  <tr bgcolor='#FFFFFF'>
+		if($pay_method == 1){
+			$body .= "  <tr bgcolor='#FFFFFF'>
 					<td align='left' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
 					<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: bold;
-					color: #000033;'>".$bank_acc_deposit."</p>
+					color: #000033;'>".JText::_("Deposit Method")."</p>
       				<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: normal;
-					color: #000000;'>".$bank_body."</p></td>
+					color: #000000;'><strong>".JText::_("Deposit to Bank Account")."</strong></p></td>
   					</tr>";
+		} else {
+			$body .= "  <tr bgcolor='#FFFFFF'>
+					<td align='left' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
+					<p style='font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+					color: #000033;'>".JText::_("Deposit Method")."</p>
+      				<p style='font-family: verdana;
+					font-size: 10px;
+					font-weight: normal;
+					color: #000000;'><strong>".JText::_('Credit Card').
+						"</strong> <br />Number: ".$ccno.
+						"<br />Card Type: ".$card_type.
+						"<br />Exp. Month: ".$exp_month.
+						"<br />Exp. Year: ".$exp_year.
+						"</p></td>
+  					</tr>";
+		}
+
 		if ($contact_details!="")
 		{
 			$body .="  <tr bgcolor='#FFFFFF'>
@@ -813,51 +898,51 @@ $terms_conditions .= " ".$booking_pay_date.".";
 		$params =& JComponentHelper::getParams('com_bookitgold');
 		$redirect = $params->get('payment_return');
 		$payment_cancel = $params->get('payment_cancel');
-//		$deposit_fixed = floatval ($params->get('deposit_fixed'));
-//		$deposit_percent = floatval ($params->get('deposit_percent'));
-// Thessite code, bypass paypal bug from Joomfish
-		
-		$deposit_fixed = floatval(0);
-		$deposit_percent = floatval(30);
-		
+		//		$deposit_fixed = floatval ($params->get('deposit_fixed'));
+		//		$deposit_percent = floatval ($params->get('deposit_percent'));
+		// Thessite code, bypass paypal bug from Joomfish
+
+		//$deposit_fixed = floatval(0);
+		//$deposit_percent = floatval(25);
+
 		//Change booking status to confirmed
 		$db = JFactory::getDBO();
 		//Check if still not booked
 		$query = "SELECT * from #__bookitbooking WHERE idbook='".$idbook."'";
 		$db->setQuery( $query );
 		$booking= $db->loadRow();
-	
+
 		$valid_from_new = date ("Y-m-d", strtotime($booking['9']));
 		$valid_to_new = date ("Y-m-d",strtotime($booking['10']));
 		$fromDateTS = strtotime($valid_from_new);
 		$toDateTS = strtotime($valid_to_new);
 		$nights=round( ($toDateTS-$fromDateTS )/86400) ;
 		$stillAvailable=true;
-		
+
 		//Set redirect url
 		if(stristr($redirect,JURI::base())) //If not relative path
 		{
-		
+
 			$redirect = substr($redirect,strlen(JURI::base()));
 			$redirect = JURI::base()."".$redirect;
 		}
 		else
 		{
-			
-				$redirect = JURI::base()."".$redirect;
+				
+			$redirect = JURI::base()."".$redirect;
 		}
-		
+
 		echo $redirect;
 		if(stristr($payment_cancel,JURI::base())) //If not relative path
 		{
-			
+				
 			$payment_cancel = substr($payment_cancel,strlen(JURI::base()));
 			$payment_cancel = JURI::base()."".$payment_cancel;
 		}
 		else
 		{
-			
-				$payment_cancel = JURI::base()."".$payment_cancel;
+				
+			$payment_cancel = JURI::base()."".$payment_cancel;
 		}
 
 		for ($currentDateTS = $fromDateTS; $currentDateTS <= $toDateTS; $currentDateTS += (60 * 60 * 24))
@@ -979,7 +1064,7 @@ $terms_conditions .= " ".$booking_pay_date.".";
 				$value_p=$deposit_fixed;
 			}
 			$value_d = $value_f - $value_p;
-			
+				
 			$query =  "UPDATE #__bookitbooking SET status='1', value_paid='".$value_p."', value_pending='".$value_d."' WHERE idbook='".$idbook."'";
 			$db->setQuery( $query );
 			$result = $db->query();
@@ -994,8 +1079,8 @@ $terms_conditions .= " ".$booking_pay_date.".";
 
 
 			$params =& JComponentHelper::getParams('com_bookitgold');
-//			$cancellation_policy = $params->get('cancellation_policy'); //Thessite
-//			$terms_conditions = $params->get('terms_conditions');
+			//			$cancellation_policy = $params->get('cancellation_policy'); //Thessite
+			//			$terms_conditions = $params->get('terms_conditions');
 			$contact_details=$params->get('contact_details');
 
 			$query = "SELECT idguests FROM #__bookitbooking WHERE idbook='".$idbook."'";
@@ -1123,7 +1208,7 @@ $terms_conditions .= " ".$booking_pay_date.".";
 			if ($redirect!="")
 			{
 				$this->setRedirect(JRoute::_($redirect),'');
-				
+
 			}
 			else
 			{
