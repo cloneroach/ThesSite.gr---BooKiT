@@ -286,9 +286,26 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$cop =JText::_("Copyright");
 		$thessite = JText::_('<br /><a href="http://www.thessite.gr" target="_blank" style="font-size:10px; text-decoration:none">Design and Development by ThesSite.gr</a>');
 
-		/* Start of Thessite Code
-		 ** prwto e-mail ston pelati
-		 **/
+/*
+ * Start of Thessite Code.
+ * 
+ * Apostoli prwtou e-mail ston pelati
+ * pou ton enimerwnei oti i kratisi pige sto sustima.
+ * 
+ * Parakatw o kwdikas gia na apostalei to e-mail.
+ *  
+ * $mailSender =& JFactory::getMailer();
+ * $mailSender ->addRecipient( <recipient email> );
+ * $mailSender ->setSender( array(  <sender email> ,<sender name>) );
+ * $mailSender ->setSubject( <subject> );
+ * $mailSender ->setBody(  <body> );
+ * 
+ * if (!$mailSender ->Send())
+ * {
+ * 	<Your error code management>
+ * }
+ */		
+		
 		if($pay_method == "1"){
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
@@ -298,8 +315,6 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		}
-
-
 
 
 		$mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
