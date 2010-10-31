@@ -307,11 +307,13 @@ class BookitgoldControllerFinalform extends BookitgoldController
  */		
 		
 		if($pay_method == "1"){
-			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
+			$keimeno .= JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		} else {
-			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
+			$keimeno .= JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		}
@@ -336,6 +338,16 @@ class BookitgoldControllerFinalform extends BookitgoldController
 					color: #FFFFFF;'>".$cop." &copy; ".$companyName."</span>".$thessite."</td>
 		</tr>
 		</table>";
+		
+		$info_mail =& JFactory::getMailer();
+		$info_mail->addRecipient( $email );
+		$info_mail->setSender( $sender );
+		$info_mail->setSubject( "Booking Request Recieved" );
+		$info_mail->setBody( $mail_body );
+		
+		if( !$info_mail-Send() ){
+			die("Malakia ekanes... :)");
+		}
 
 		/* End of Thessite Code */
 
