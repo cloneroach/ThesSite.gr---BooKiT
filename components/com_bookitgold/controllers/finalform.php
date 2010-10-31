@@ -353,8 +353,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 				<td align='center' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
 				<p style='font-family: verdana;
 					font-size: 10px;
-					font-weight: bold;
-					color: #000033;'>".$keimeno."</td>
+					color: #000033;'>".$keimeno."</p></td>
 		</tr>
 		<tr align='center' valign='middle' bgcolor='#859032'>
 		<td bgcolor='#AFAFAF'><span style='font-family: verdana; font-size: 10px; font-weight: normal; color: #FFFFFF;'>".$cop." &copy; ".$companyName."</span>".$thessite."</td>
