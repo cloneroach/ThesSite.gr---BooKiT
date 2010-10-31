@@ -317,25 +317,47 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		}
-
-
+		
+		// Thessite - Fetch the email logo
+		$email_logo = $params->get('email_logo');
 		$mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
+		style='border: 1px solid #DEDEDE;
+		font-family: verdana; 
+		font-size: 10px; 
+		background-color: #FFFFFF;' align='center'>";
+
+		$file_path = JURI::base()."images/bookit/images/".$email_logo;
+		$img_place ="<img src='".$file_path."' alt='logo' width='540' height='90'/>";
+		if (isset($file_path) && $email_logo!="")
+		{
+			$body .="<tr bgcolor='#D9DDC2'>
+				<td align='left' valign='top' bgcolor='#DEDEDE'>
+				<div align='center'>".$img_place."</div></td>
+				</tr>";
+		}
+
+
+		$mail_body .= "<table width='570' border='0' cellpadding='5' cellspacing='1'
 		style='border: 1px solid #DEDEDE;
 		font-family: verdana; 
 		font-size: 10px; 
 		background-color: #FFFFFF;' align='center'>
 		<tr>
 		<th style='background:#e8f1fa; color:#000; padding:8px; text-align:left;'>
-			".$title."<br />
+			".$title."<br /><br />
 			".$intro1."<br />
-			".$keimeno."<br />
 		</th>
 		</tr>
-		<tr align='center' valign='middle' bgcolor='#859032'>
-		<td bgcolor='#AFAFAF'><span style='font-family: verdana;
+		<tr>
+		<tr bgcolor='#FFFFFF' style='border: 1px solid #DEDEDE;'>
+				<td align='center' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
+				<p style='font-family: verdana;
 					font-size: 10px;
-					font-weight: normal;
-					color: #FFFFFF;'>".$cop." &copy; ".$companyName."</span>".$thessite."</td>
+					font-weight: bold;
+					color: #000033;'>".$keimeno."</td>
+		</tr>
+		<tr align='center' valign='middle' bgcolor='#859032'>
+		<td bgcolor='#AFAFAF'><span style='font-family: verdana; font-size: 10px; font-weight: normal; color: #FFFFFF;'>".$cop." &copy; ".$companyName."</span>".$thessite."</td>
 		</tr>
 		</table>";
 		
@@ -347,7 +369,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$info_mail->isHTML( true );
 		
 		if( !$info_mail->Send() ){
-			die("Malakia ekanes... :)");
+			die("An error occured, please contact the developers at dev@thessite.gr !");
 		}
 
 		/* End of Thessite Code */
