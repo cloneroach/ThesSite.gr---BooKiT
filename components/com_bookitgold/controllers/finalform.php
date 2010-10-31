@@ -345,7 +345,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$info_mail->setSubject( "Booking Request Recieved" );
 		$info_mail->setBody( $mail_body );
 		
-		if( !$info_mail-Send() ){
+		if( !$info_mail->Send() ){
 			die("Malakia ekanes... :)");
 		}
 
