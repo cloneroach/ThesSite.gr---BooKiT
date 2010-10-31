@@ -315,7 +315,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			//$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
-			$keimeno .= JText::_('We look forward to welcoming you!');
+			$keimeno .= "<p>".JText::_('We look forward to welcoming you!')."</p>";
 		}
 		
 		// Thessite - Fetch the email logo
