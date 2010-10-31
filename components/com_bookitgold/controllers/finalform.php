@@ -308,12 +308,12 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		
 		if($pay_method == "1"){
 			//$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
-			$keimeno .= JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		} else {
 			//$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
-			$keimeno .= JText::_('Thank you for your reservation in "Akti Retzika".');
+			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		}
