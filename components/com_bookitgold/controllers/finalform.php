@@ -302,17 +302,15 @@ class BookitgoldControllerFinalform extends BookitgoldController
  * 
  * if (!$mailSender ->Send())
  * {
- * 	<Your error code management>
+ * 	<Error code management>
  * }
  */		
 		
 		if($pay_method == "1"){
-			//$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
 			$keimeno .= JText::_('We look forward to welcoming you!');
 		} else {
-			//$keimeno = JText::_('Dear')." ".$name." ".$surname.",";
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= "<p>".JText::_('We look forward to welcoming you!')."</p>";
@@ -717,15 +715,6 @@ class BookitgoldControllerFinalform extends BookitgoldController
 				</td>
 				</tr>";
 
-		/* Start of Thessite code
-		 ** Bypass the bug from Joomfish not getting the ToC / CP from
-		 ** the table components, also deposit percentages
-		 */
-
-		// Deposit Percentage
-		//$deposit_percent = floatval(30);
-		//$deposit_fixed = floatval(0);
-
 		// Cancellation Policy
 		$dateformatcode = $params->get('dateformat');
 
@@ -742,7 +731,6 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$d2='%m/%d/%Y';
 		}
 
-		//$afiksi = $this->valid_from;
 		$afiksi = $valid_from;
 		$cancel_date_1 = date($d1, strtotime("-20 day".$afiksi) ); // 100% pisw
 		$cancel_date_2 = date($d1, strtotime("-19 day".$afiksi) ); // apo gia 50%
@@ -777,22 +765,13 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		}
 		/* Start of Thessite code */
 
-		//$booking_pay_date = date( $d1, strtotime("+2 day") );
-		//$terms_conditions = JText::_('For your booking confirmation you have to deposit 30% of the total price of your reservation until');
-		//$terms_conditions .= " ".$booking_pay_date.".";
-
 		/* Ypologismos tou posou pou prokatabalei
 		 * Ean minei gia 1 mexri 4 imeres, dinei to poso pou antistixei se 1 bradia
 		 * Ean minei gia 4+ imeres, dinei to 25% pou antistixei sto kostos tis diamonis
 		 */
-		//$timi = $this->price;
-		//$nuxtes = $this->nnights;
-
-		//$price_per_n = $timi / $nuxtes;
 		$price_per_n = $price / $nights;
 
 
-		//if( $this->nnights <= 4 ){
 		if( $nights <= 4 ){
 			$deposit_percent = 0;
 			$deposit_fixed = $price_per_n;
@@ -833,25 +812,6 @@ class BookitgoldControllerFinalform extends BookitgoldController
 					color: #000000;'>".$terms_conditions."</p></td>
   					</tr>";
 		}
-		//		$bank_acc_deposit = JText::_("Deposit to Bank Account");
-		//		$bank_body = "<strong>".JText::_("National Bank of Greece")."</strong><br />";
-		//		$bank_body .= JText::_("<strong>Name:</strong> Sotiria Rentzika")."<br />";
-		//		$bank_body .= "<strong>".JText::_("Account").":</strong>"." 23774787719<br />";
-		//		$bank_body .= "<strong>".JText::_("IBAN").":</strong>"." GR4501102370000023774787719<br />";
-		//		$bank_body .= "<strong>".JText::_("BIC").":</strong>"." ETHNGRAA<br /><br />";
-		//		$bank_body .= JText::_("(Please note your name and Reference ID from the email you recieved).");
-		//
-		//		$body .= "  <tr bgcolor='#FFFFFF'>
-		//					<td align='left' valign='top' bgcolor='#ffffee' style='border-bottom: 1px solid #DEDEDE;'>
-		//					<p style='font-family: verdana;
-		//					font-size: 10px;
-		//					font-weight: bold;
-		//					color: #000033;'>".$bank_acc_deposit."</p>
-		//      				<p style='font-family: verdana;
-		//					font-size: 10px;
-		//					font-weight: normal;
-		//					color: #000000;'>".$bank_body."</p></td>
-		//  					</tr>";
 
 		if($pay_method == 1){
 			$body .= "  <tr bgcolor='#FFFFFF'>
@@ -951,10 +911,6 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$payment_cancel = $params->get('payment_cancel');
 		//		$deposit_fixed = floatval ($params->get('deposit_fixed'));
 		//		$deposit_percent = floatval ($params->get('deposit_percent'));
-		// Thessite code, bypass paypal bug from Joomfish
-
-		//$deposit_fixed = floatval(0);
-		//$deposit_percent = floatval(25);
 
 		//Change booking status to confirmed
 		$db = JFactory::getDBO();

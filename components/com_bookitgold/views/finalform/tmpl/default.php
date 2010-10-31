@@ -85,7 +85,6 @@ $db->setQuery($sql);
 
 
 $select_country = JText::_('-Select Country-');
-//$results[] = JHTML::_('select.option', 0, '-Select Country-', 'idcountry', 'name' );
 $results[] = JHTML::_('select.option', 0, $select_country, 'idcountry', 'name' );
 
 $results = array_merge( $results, $db->loadObjectList() );
@@ -313,7 +312,6 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <?php //Script to Show/Hide <divs> ?>
 <div id="bookit_final_pcode_right" class="bookit_final_right">
 	<select onchange="show(this)" class="bookit_final_input" name="pay_method" id="pay_method">
-<!--    	<option value="0" selected="selected"><?php //echo JText::_("-Select Method-"); ?></option> -->
     	<option value="1"><?php echo JText::_("Deposit to Bank Account"); ?></option>
 		<option value="2"><?php echo JText::_("Credit Card"); ?></option>
 	</select>

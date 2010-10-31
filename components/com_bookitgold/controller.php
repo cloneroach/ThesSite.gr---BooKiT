@@ -180,15 +180,6 @@ class BookitgoldController extends JController
 				$child = JText::_("Childs");
 			}
 					
-/*
-			if ($nchilds > 1 || $lchilds > 1 ) {
-				$child=JText::_("Childrens");
-			} else if ($nchilds==1 || $lchilds==1) {
-				$child=JText::_("Child");
-			} else if ( $nchilds==0 || $lchilds==0) {
-				$child = JText::_("Childrens");
-			}
-*/			
 			if ($nguests>1) {
 				$adult=JText::_("Adults");
 			} else {

@@ -134,7 +134,6 @@ $db->setQuery($sql);
 
 
 $select_one = "-".JText::_('Select One')."-";
-//$results[] = JHTML::_('select.option', 0, '-Select One-', 'idcategory', 'name' );
 $results[] = JHTML::_('select.option', 0, $select_one, 'idcategory', 'name' );
 
 
