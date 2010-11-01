@@ -346,18 +346,26 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div id="payMethod2" style="display: none;">
 <div class="bookit_payment_header"><?php echo JText::_("Credit Card Payment");?></div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Credit Card Number").$star; ?></div>
-<div class="bookit_final_pcode_right" id="bookit_final_right"><input type="text" name="ccno" id="ccno" class="bookit_final_input" /></div>
-<div id="bookit_final_ccno_right_error" class="bookit_final_error" style="display: none;">
+<div class="bookit_final_pcode_right" id="bookit_final_right"><input type="text" name="cardnumber" id="cardnumber" class="bookit_final_input" /></div>
+<div id="bookit_final_cardnumber_right_error" class="bookit_final_error" style="display: none;">
 <?php echo JText::_("Please type your card number.");?>
 </div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Card Type").$star; ?></div>
 <div class="bookit_final_pcode_right" id="bookit_final_right">
-	<select class="bookit_final_input" name="card_type" id="card_type">
+	<select class="bookit_final_input" name="cardname" id="cardname">
 		<option value="Visa">Visa</option>
-		<option value="MC">Mastercard</option>
-		<option value="AmEx">American Express</option>
-		<option value="Disc">Discover</option>
-		<option value="Diners">Diners</option>
+		<option value="MasterCard">MasterCard</option>
+		<option value="AmEx">American Express</option> 
+		<option value="CarteBlanche">Carte Blanche</option> 
+		<option value="DinersClub">Diners Club</option> 
+		<option value="Discover">Discover</option> 
+		<option value="EnRoute">enRoute</option> 
+		<option value="JCB">JCB</option> 
+		<option value="Maestro">Maestro</option> 
+		<option value="Solo">Solo</option> 
+		<option value="Switch">Switch</option> 
+		<option value="VisaElectron">Visa Electron</option> 
+		<option value="LaserCard">Laser</option>
 	</select>
 </div>
 <div id="bookit_final_cardtype_right_error" class="bookit_final_error" style="display: none;">
@@ -579,18 +587,21 @@ function formValidation ()
 	var pay_MethodField = document.getElementById('pay_method');
 	var exp_monthField = document.getElementById('exp_month');
 	var exp_yearField = document.getElementById('exp_year');
-	var card_typeField = document.getElementById('card_type');
-	var ccnoField = document.getElementById('ccno');
+	var cardname = document.getElementById('cardname');
+	var cardnumber = document.getElementById('cardnumber');
 
 	var pay_MethodErrorDiv = document.getElementById('bookit_final_paymethod_right_error');
 	var expiryErrorDiv = document.getElementById('bookit_final_expiry_right_error');
-	var card_typeErrorDiv = document.getElementById('bookit_final_cardtype_right_error');
-	var ccnoErrorDiv = document.getElementById('bookit_final_ccno_right_error');
+	var cardnameErrorDiv = document.getElementById('bookit_final_cardtype_right_error');
+	var cardnumberErrorDiv = document.getElementById('bookit_final_cardnumber_right_error');
 	
 	pay_MethodErrorDiv.style.display="none";
 	expiryErrorDiv.style.display="none";
-	ccnoErrorDiv.style.display="none";
-	card_typeErrorDiv.style.display="none";
+	cardnumberErrorDiv.style.display="none";
+	cardnameErrorDiv.style.display="none";
+
+	usr_cardnumber = document.getElementById('cardnumber').value;
+	usr_cardname = document.getElementById('cardname').value;
 	
 
 	//First Name*
@@ -700,32 +711,24 @@ function formValidation ()
 	cityErrorDiv.style.display="none";
 
 	
-	if( pay_MethodField.value=="0" )
+	if( pay_MethodField.value=="0" ) {
 		pay_MethodErrorDiv.style.display=="inline";
+	}
 
-	else if( pay_MethodField.value=="2" )
-//		if( !isValidCreditCard(card_typeField, ccnoField) ){
-		if( checkCreditCard (ccnoField, card_typeField) ){
-			ccnoErrorDiv.style.display=="inline";
+	else if( pay_MethodField.value=="2" ) {
+		if( !checkCreditCard(usr_cardnumber, usr_cardname) ){
+			alert (ccErrors[ccErrorNo]);
 			return false;
 		} else {
 			return true;
 		}
-//	else if( (exp_monthField.value=="") || ( exp_yearField=="" ) )
-//		expiryErrorDiv.style.display = "inline";
-//	else if( card_typeField.value=="" )
-//		card_typeErrorDiv.style.display == "inline";
-
+	}
 
 
 	else if (nameField.value=="")
 
 		nameErrorDiv.style.display="inline";
 		
-//	else if (pay_MethodField.value=="0")
-//		pay_MethodErrorDiv.style.display=="inline"; //Thessite
-
-
 
 	else if (surnameField.value=="")
 
@@ -838,11 +841,11 @@ function isValidEmail ()
 var ccErrorNo = 0;
 var ccErrors = new Array ()
 
-ccErrors [0] = "Unknown card type";
-ccErrors [1] = "No card number provided";
-ccErrors [2] = "Credit card number is in invalid format";
-ccErrors [3] = "Credit card number is invalid";
-ccErrors [4] = "Credit card number has an inappropriate number of digits";
+ccErrors[0] = "Unknown card type";
+ccErrors[1] = "No card number provided";
+ccErrors[2] = "Credit card number is in invalid format";
+ccErrors[3] = "Credit card number is invalid";
+ccErrors[4] = "Credit card number has an inappropriate number of digits";
 
 function checkCreditCard (cardnumber, cardname) {
      
@@ -914,7 +917,7 @@ function checkCreditCard (cardnumber, cardname) {
   for (var i=0; i<cards.length; i++) {
 
     // See if it is this card (ignoring the case of the string)
-    if (cardname.toLowerCase () == cards[i].name.toLowerCase()) {
+    if (cardname.toLowerCase() == cards[i].name.toLowerCase()) {
       cardType = i;
       break;
     }
@@ -933,7 +936,7 @@ function checkCreditCard (cardnumber, cardname) {
   }
     
   // Now remove any spaces from the credit card number
-  cardnumber = cardnumber.replace (/\s/g, "");
+  cardnumber = cardnumber.replace(/\s/g, "");
   
   // Check that the number is numeric
   var cardNo = cardnumber
@@ -992,7 +995,7 @@ function checkCreditCard (cardnumber, cardname) {
   // Now see if any of them match what we have in the card number
   for (i=0; i<prefix.length; i++) {
     var exp = new RegExp ("^" + prefix[i]);
-    if (exp.test (cardNo)) PrefixValid = true;
+    if (exp.test(cardNo)) PrefixValid = true;
   }
       
   // If it isn't a valid prefix there's no point at looking at the length
@@ -1182,10 +1185,10 @@ function makeBooking (){
 	var coupon_code_js = "<?php echo $this->coupon_code;?>";
 
 	
-	var ccno_js = document.getElementById('ccno').value;
+	var cardnumber_js = document.getElementById('cardnumber').value;
 	var exp_month_js = document.getElementById('exp_month').value;
 	var exp_year_js = document.getElementById('exp_year').value;
-	var card_type_js = document.getElementById('card_type').value;
+	var cardname_js = document.getElementById('cardname').value;
 	var pay_method_js = document.getElementById('pay_method').value;
 
 	var name_js = document.getElementById('name').value;
@@ -1359,7 +1362,7 @@ function makeBooking (){
 		url += "&addr2="+addr2_js+"&pcode="+pcode_js+"&preferences="+preferences_js;
 
 		// Thessite Additions for Childs / Pay Method - Credit Card
-		url += "&lchilds="+lchilds_js+"&ccno="+ccno_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&card_type="+card_type_js+"&pay_method="+pay_method_js;
+		url += "&lchilds="+lchilds_js+"&cardnumber="+cardnumber_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&cardname="+cardname_js+"&pay_method="+pay_method_js;
 
 
 		xmlhttp.open("GET",url,true);	
