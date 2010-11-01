@@ -207,25 +207,6 @@ class BookitgoldControllerBooking extends BookitgoldController
 					}
 				}
 				
-				/* Start of Thessite Code */
-				
-				//Check for Persons in the Room
-				//$total_guests = $nguests + $nchilds + $lchilds;
-				/* An oi episkeptes einai panw apo 4 atoma
-				** * Check posoi einai ap autous einai 0-5
-				** *** An exoume paidia 0-5 tote: $nchilds_price = ( 0 * $nchilds ) * $nights  /// Tote tipota ?
-				** * Check posoi ap autous einai 6-12
-				** *** An exoume paidia 6-12 tote: $lchilds_price = ( 6 * $lchilds ) * $nights // 8elei kainouria metabliti gia ta 'extra' atoma ?
-				** * Check posoi ap autous einai 12+
-				** *** An exoume atoma 12+ tote: $nguests_price = ( 10 * $nguests ) * $nights // 8elei kainouria metabliti gia ta 'extra' atoma ?
-				*/
-				//if( $total_guests > 4 ) {
-					
-					//JText::_("We suggest you to change the room type to Apartment!");
-					
-				//}
-				
-				/* End of Thessite Code */
 
 				//Check for coupon
 				if ($idcoupon!="" && $idcoupon>0)

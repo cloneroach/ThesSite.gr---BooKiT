@@ -542,12 +542,33 @@ else if ($dateformatcode==2)
 		?></td>
 
 	</tr>
+	
+	<tr>
+		<td width="100" align="right" class="key">
+			<label for="paymethod"><?php echo JText::_("Pay Method"); ?></label>
+		</td>
+		<td>
+		<?php
+		if( $this->booking->pay_method == 1 ){
+			echo JText::_("<strong>Deposit to Bank Account</strong>");
+		} elseif ( $this->booking->pay_method == 2 ){
+			echo JText::_("<strong>Credit Card</strong>");
+			echo JText::_("<br />Card Number: ").$this->booking->cardnumber;
+			echo JText::_("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Card Type: ").$this->booking->cardname;
+			echo JText::_("<br />Expiry: ").$this->booking->exp_month.'/'.$this->booking->exp_year;
+		} else {
+			echo JText::_("Pay Method Unknown!");
+		}
+		?>
+		</td>
+	</tr>
 
 	<tr>
 
 		<td rowspan="4" width="100" align="right" class="key"><label
 
 			for="value"> <?php echo JText::_( 'Price' ); ?>: </label></td>
+	</tr>
 
 
 

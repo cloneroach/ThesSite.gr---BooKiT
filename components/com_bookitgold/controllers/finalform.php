@@ -72,8 +72,8 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$coupon_code =  JRequest::getVar('coupon_code');
 
 		// Thessite- PayMethod Vars
-		$ccno = JRequest::getVar('ccno');
-		$card_type = JRequest::getVar('card_type');
+		$cardnumber = JRequest::getVar('cardnumber');
+		$cardname = JRequest::getVar('cardname');
 		$pay_method = JRequest::getVar('pay_method');
 		$exp_year = JRequest::getVar('exp_year');
 		$exp_month = JRequest::getVar('exp_month');
@@ -156,7 +156,11 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$data->status = '2';
 
 		// Thessite - Push data for pay_method
-		//$data->pay_method = $pay_method;
+		$data->pay_method = $pay_method;
+		$data->exp_year = $exp_year;
+		$data->exp_month = $exp_month;
+		$data->cardnumber = $cardnumber;
+		$data->cardname = $cardname;
 
 		$db = JFactory::getDBO();
 		$db->insertObject( '#__bookitbooking', $data, 'idbook' );
@@ -836,8 +840,8 @@ class BookitgoldControllerFinalform extends BookitgoldController
 					font-size: 10px;
 					font-weight: normal;
 					color: #000000;'><strong>".JText::_('Credit Card').
-						"</strong> <br />Number: ".$ccno.
-						"<br />Card Type: ".$card_type.
+						"</strong> <br />Number: ".$cardnumber.
+						"<br />Card Type: ".$cardname.
 						"<br />Exp. Month: ".$exp_month.
 						"<br />Exp. Year: ".$exp_year.
 						"</p></td>

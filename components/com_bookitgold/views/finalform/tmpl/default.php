@@ -600,8 +600,8 @@ function formValidation ()
 	cardnumberErrorDiv.style.display="none";
 	cardnameErrorDiv.style.display="none";
 
-	usr_cardnumber = document.getElementById('cardnumber').value;
-	usr_cardname = document.getElementById('cardname').value;
+	var usr_cardnumber = document.getElementById('cardnumber').value;
+	var usr_cardname = document.getElementById('cardname').value;
 	
 
 	//First Name*
@@ -839,7 +839,7 @@ function isValidEmail ()
 //Start of CCValidation
 
 var ccErrorNo = 0;
-var ccErrors = new Array ()
+var ccErrors = new Array ();
 
 ccErrors[0] = "Unknown card type";
 ccErrors[1] = "No card number provided";
@@ -939,7 +939,7 @@ function checkCreditCard (cardnumber, cardname) {
   cardnumber = cardnumber.replace(/\s/g, "");
   
   // Check that the number is numeric
-  var cardNo = cardnumber
+  var cardNo = cardnumber;
   var cardexp = /^[0-9]{13,19}$/;
   if (!cardexp.exec(cardNo))  {
      ccErrorNo = 2;
@@ -969,7 +969,7 @@ function checkCreditCard (cardnumber, cardname) {
       checksum = checksum + calc;
     
       // Switch the value of j
-      if (j ==1) {j = 2} else {j = 1};
+      if (j == 1) {j = 2; } else {j = 1; };
     } 
   
     // All done - if checksum is divisible by 10, it is a valid modulus 10.
@@ -1251,12 +1251,8 @@ function makeBooking (){
 
           }
 
-        catch(e)
-
-          {
-
-          try //Firefox, Mozilla, Opera, etc.
-
+        catch(e) {
+            try //Firefox, Mozilla, Opera, etc.
             {
 
         	
