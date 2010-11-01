@@ -120,7 +120,7 @@ $lists['coupon']  = JHTML::_('select.genericList', $results, 'idcoupon', 'class=
 * Ka8orismos e-mail pelati gia to admin panel -> edit booking
 * Emfanizei to e-mail, na ginei na emfanizei -- Onoma & Epi8eto -- ?
 **/
-$sql = "SELECT idguests, email FROM #__bookitguests";
+$sql = "SELECT idguests, email, name, surname FROM #__bookitguests";
 
 $db->setQuery($sql);
 
