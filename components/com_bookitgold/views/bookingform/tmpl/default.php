@@ -516,7 +516,8 @@ if( $total_guests > $capacity ) {
 
 <div id="bookit_booking_pref_requests">
 <?php
-echo JText::_("In an attempt to make your stay as comfortable as possible, a list of extra services is given below for you to choose the one(s) that meet your needs and expectations");
+//echo JText::_("In an attempt to make your stay as comfortable as possible, a list of extra services is given below for you to choose the one(s) that meet your needs and expectations");
+echo JText::_("EXTRA_SERVICIES_TEXT");
 ?>
 </div>
 
@@ -662,7 +663,10 @@ for ($i=0; $i<count($pref_array); $i++)
 
 <div id="bookit_booking_pref_requests">
 
-<?php echo JText::_('Guest Comments / Special Requests'); ?><br />
+<?php
+//echo JText::_('Guest Comments / Special Requests');
+echo JText::_('COMMENTS_SPECIAL_RQ');
+?><br />
 
 <textarea rows="4" cols="32" name="preferences" id="preferences"></textarea>
 
@@ -725,11 +729,13 @@ if( $this->nnights <= 4 ){
 	$deposit_fixed = $price_per_n;
 	// ToC
 	$booking_pay_date = date( $d1, strtotime("+2 day") );
-	$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	//$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	$terms_conditions = JText::_("DEPOSIT_TOC")." ";
 	$terms_conditions .= $price_per_n;
 	$terms_conditions .= " ".$this->currency." ".JText::_('until');
 	$terms_conditions .= " ".$booking_pay_date.".";
-	$terms_conditions .= "<br />".JText::_('(amount that equals one night stay)');
+	//$terms_conditions .= "<br />".JText::_('(amount that equals one night stay)');
+	$terms_conditions .= "<br />".JText::_("AMOUNT_ONE");
 	
 } else {
 	$deposit_percent = floatval(25);
@@ -738,11 +744,13 @@ if( $this->nnights <= 4 ){
 	$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
 	// ToC
 	$booking_pay_date = date( $d1, strtotime("+2 day") );
-	$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	//$terms_conditions = JText::_('For your booking confirmation you have to deposit')." ";
+	$terms_conditions = JText::_("DEPOSIT_TOC")." ";
 	$terms_conditions .= $rounded;
 	$terms_conditions .= " ".$this->currency." ".JText::_('until');
 	$terms_conditions .= " ".$booking_pay_date.".";
-	$terms_conditions .= "<br />".JText::_('(amount that equals 25% of you total stay)');
+	//$terms_conditions .= "<br />".JText::_('(amount that equals 25% of you total stay)');
+	$terms_conditions .= "<br />".JText::_("AMOUNT_25");
 }
 
 ?>

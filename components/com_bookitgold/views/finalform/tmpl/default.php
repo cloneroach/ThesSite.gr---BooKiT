@@ -326,13 +326,14 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
     <div class="bookit_payment_header"><?php echo JText::_("Deposit to Bank Account")?></div>
     <div class="bookit_payment_txt">
     <?php
-    echo "<strong>".JText::_("National Bank of Greece")."</strong><br />";
-    echo JText::_("<strong>Name:</strong> Sotiria Rentzika")."<br />";
-    echo "<strong>".JText::_("Account").":</strong>"." 23774787719<br />";
-    echo "<strong>".JText::_("IBAN").":</strong>"." GR4501102370000023774787719<br />";
-    echo "<strong>".JText::_("BIC").":</strong>"." ETHNGRAA<br /><br />";
-    
-    echo JText::_("(Please note your name and Reference ID from the email you recieved).");
+/*    echo "<strong>".JText::_("National Bank of Greece")."</strong><br />";
+*    echo JText::_("<strong>Name:</strong> Sotiria Rentzika")."<br />";
+*    echo "<strong>".JText::_("Account").":</strong>"." 23774787719<br />";
+*    echo "<strong>".JText::_("IBAN").":</strong>"." GR4501102370000023774787719<br />";
+*    echo "<strong>".JText::_("BIC").":</strong>"." ETHNGRAA<br /><br />";
+*    
+*    echo JText::_("(Please note your name and Reference ID from the email you recieved).");
+*/
 	?>
 
     </div>
@@ -344,7 +345,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 <div id="bookit_final_clear"></div>
 
 <div id="payMethod2" style="display: none;">
-<div class="bookit_payment_header"><?php echo JText::_("Credit Card Payment");?></div>
+<div class="bookit_payment_header"><?php echo JText::_("Credit Card");?></div>
 <div id="bookit_final_pcode_left" class="bookit_final_left"><? echo JText::_("Credit Card Number").$star; ?></div>
 <div class="bookit_final_pcode_right" id="bookit_final_right"><input type="text" name="cardnumber" id="cardnumber" class="bookit_final_input" /></div>
 <div id="bookit_final_cardnumber_right_error" class="bookit_final_error" style="display: none;">
