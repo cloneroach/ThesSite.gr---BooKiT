@@ -1173,6 +1173,8 @@ function makeBooking (){
 	
 	var lchilds_js = "<?php echo $this->lchilds; ?>"; // Thessite
 
+	var arrival_time_js = "<?php echo $this->arrival_time; ?>"; // Thessite
+
 	var idcategory_js = "<?php echo $this->idcategory;?>";
 
 	var price_js = "<?php echo $this->price;?>";
@@ -1358,8 +1360,8 @@ function makeBooking (){
 
 		url += "&addr2="+addr2_js+"&pcode="+pcode_js+"&preferences="+preferences_js;
 
-		// Thessite Additions for Childs / Pay Method - Credit Card
-		url += "&lchilds="+lchilds_js+"&cardnumber="+cardnumber_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&cardname="+cardname_js+"&pay_method="+pay_method_js;
+		// Thessite Additions for Childs / Pay Method - Credit Card / Arrival Time
+		url += "&lchilds="+lchilds_js+"&cardnumber="+cardnumber_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&cardname="+cardname_js+"&pay_method="+pay_method_js+"&arrival_time="+arrival_time_js;
 
 
 		xmlhttp.open("GET",url,true);	

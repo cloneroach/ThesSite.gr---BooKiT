@@ -199,9 +199,7 @@ echo JHTML::_( 'calendar',$startdate,'valid_from','valid_from',$d2,'class="booki
 
 <div id="bookit_search_tdr">
 
-<p><label for="valid_to" class="bookit_search_label"><?php echo JText::_("Date of Departure")?></label>
-
-</p>
+<p><label for="valid_to" class="bookit_search_label"><?php echo JText::_("Date of Departure")?></label></p>
 
 <p><?php 
 
@@ -209,6 +207,17 @@ $js2 = 'onChange="(updateDateField(\''.$fn2.'\',\''.$d1.'\')); (setDayName(\''.$
 
 echo JHTML::_( 'calendar',date($d1,strtotime("+ 6day")),'valid_to','valid_to',$d2,'class="bookit_search_inputbox" size="10"'.$js2);?>
 
+</p></div>
+
+<div id="bookit_search_tds">
+<p><label for="arrival_time" class="bookit_search_label"><?php echo JText::_("Time of Arrival"); ?></label></p>
+<p><select name="arrival_time" id="arrival_time" class="bookit_search_select">
+<?php
+for ($time_arrival = 00; $time_arrival < 24; $time_arrival++) {
+	echo '<option value="'.$time_arrival.'">'.$time_arrival.'</option>';
+}
+?>
+</select>
 </p>
 
 </div>
@@ -963,6 +972,8 @@ function submitbutton(pressbutton, format) {
 		
 		var lchilds_js = document.getElementById('lchilds').value; // Thessite
 
+		var arrival_time_js = document.getElementById('arrival_time').value; // Thessite
+
 		var qresults=document.getElementById('quick_results');
 
 		 document.getElementById('bookit_search_result_found').innerHTML= "";
@@ -1117,7 +1128,7 @@ function submitbutton(pressbutton, format) {
 
 	 
 
-		var url="<?php echo JURI::base()?>"+"index.php?option=com_bookitgold&task=searchResults&view=bookitgold&format=raw&idcategory="+idcategory_js+"&valid_from="+valid_from_js+"&valid_to="+valid_to_js+"&nguests="+nguests_js+"&nchilds="+nchilds_js+"&lchilds="+lchilds_js; // Thessite
+		var url="<?php echo JURI::base()?>"+"index.php?option=com_bookitgold&task=searchResults&view=bookitgold&format=raw&idcategory="+idcategory_js+"&valid_from="+valid_from_js+"&valid_to="+valid_to_js+"&nguests="+nguests_js+"&nchilds="+nchilds_js+"&lchilds="+lchilds_js+"&arrival_time="+arrival_time_js; // Thessite
 
 		xmlhttp.open("GET",url,true);				
 
@@ -1273,7 +1284,7 @@ function callback() {
 
                 } else {
 
-                        alert("There was a problem retrieving the data from the calendar.\n" + req.statusText);
+                        //alert("There was a problem retrieving the data from the calendar.\n" + req.statusText);
 
                 }
 

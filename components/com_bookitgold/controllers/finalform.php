@@ -58,6 +58,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$nguests = JRequest::getVar('nguests');
 		$nchilds = JRequest::getVar('nchilds');
 		$lchilds = JRequest::getVar('lchilds'); // Thessite
+		$arrival_time = JRequest::getVar('arrival_time'); // Thessite
 		$extra_ids = JRequest::getVar('extra_ids');
 		$name = JRequest::getVar('name');
 		$surname = JRequest::getVar('surname');
@@ -379,6 +380,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$accommodation_header=JText::_("Accommodation Details");
 		$check_in = JText::_("Date of Arrival"); // Thessite
 		$check_out = JText::_("Date of Departure"); // Thessite
+		$time = JText::_("Time of Arrival"); // Thessite
 		$nights_str = JText::_("Nights");
 		$guests_str = JText::_("Adults");
 		$childs_str = JText::_("Children, 0 to 5 years old"); // Thessite
@@ -414,6 +416,15 @@ class BookitgoldControllerFinalform extends BookitgoldController
           <td style='background:#fafafa;
 					color:#000;
 					padding:8px;'>".$valid_to."</td>
+        </tr>
+        <tr>
+          <th style='background:#e8f1fa;
+					color:#000;
+					padding:8px;
+					text-align:left;'>".$time."</th>
+          <td style='background:#fafafa;
+					color:#000;
+					padding:8px;'>".$arrival_time."</td>
         </tr>
         <tr>
           <th style='background:#e8f1fa;
@@ -456,7 +467,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		//Guest Details
 		$guest_header=JText::_("Guest Details");
 		$fname_str = JText::_("First name");
-		$lname_str = JText::_("Last name");
+		$lname_str = JText::_("Surname");
 		$email_str = JText::_("Email");
 		$phone_str = JText::_("Contact phone number");
 		$addr_str = JText::_("Address");
@@ -790,7 +801,8 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		} else {
 			$deposit_percent = floatval(25);
 			$deposit_fixed = 0;
-			$teliko_poso = $total_price * $deposit_percent / 100;
+			//$teliko_poso = $total_price * $deposit_percent / 100;
+			$teliko_poso = $price * $deposit_percent / 100;
 			$rounded = floor($teliko_poso); // Strogkilop. pros ta katw [ 10,5 ==> 10 ]
 			// ToC
 			$booking_pay_date = date( $d1, strtotime("+2 day") );
@@ -823,7 +835,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 					<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: bold;
-					color: #000033;'>".JText::_("Deposit Method")."</p>
+					color: #000033;'>".JText::_("Payment Method")."</p>
       				<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: normal;
@@ -835,7 +847,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 					<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: bold;
-					color: #000033;'>".JText::_("Deposit Method")."</p>
+					color: #000033;'>".JText::_("Payment Method")."</p>
       				<p style='font-family: verdana;
 					font-size: 10px;
 					font-weight: normal;

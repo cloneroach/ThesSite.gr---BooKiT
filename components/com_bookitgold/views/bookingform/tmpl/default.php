@@ -128,6 +128,7 @@ $cancellation_policy .= JText::_("your deposit is not refundable.");
 
 $timi = $this->price;
 $nuxtes = $this->nnights;
+$arrival_time = $this->arrival_time;
 
 $price_per_n = $timi / $nuxtes;
 
@@ -678,7 +679,7 @@ echo JText::_('COMMENTS_SPECIAL_RQ');
 <div class="bookit_booking_review_left"></div>
 
 <?php
-$show_coupons = 0; // Make it so we dont use promotional code!
+$show_coupons = 0; // Make it so we dont use promotional code! Thessite
 if ($show_coupons==1){
 ?>
 
@@ -947,6 +948,7 @@ onclick="checkTerms()"><?php echo JText::_("Continue")?></button>
 
 	<input type="hidden" name="nchilds" id="nchilds" value="<?php echo $this->nchilds;?>"></input>
    	<input type="hidden" name="lchilds" id="lchilds" value="<?php echo $this->lchilds; //Thessite ?>"></input>
+   	<input type="hidden" name="arrival_time" id="arrival_time" value="<?php echo $this->arrival_time; //Thessite ?>"></input> 
 
 	<input type="hidden" name="idcategory" id="idcategory" value="<?php echo $this->idcategory;?>"></input>
 

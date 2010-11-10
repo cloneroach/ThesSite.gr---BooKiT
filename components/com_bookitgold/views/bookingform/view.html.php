@@ -103,6 +103,7 @@
 			$nchilds = JRequest::getVar('nchilds');
 			
 			$lchilds = JRequest::getVar('lchilds'); // Thessite
+			$arrival_time = JRequest::getVar('arrival_time'); // Thessite
 
 			$nnights = JRequest::getVar('nnights');
 
@@ -139,6 +140,8 @@
 			$this->assignRef( 'nchilds', $nchilds );
 			
 			$this->assignRef( 'lchilds' , $lchilds ); // Thessite
+			
+			$this->assignRef( 'arrival_time' , $arrival_time ); // Thessite
 
 			$this->assignRef( 'price', $price );
 

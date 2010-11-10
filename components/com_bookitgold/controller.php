@@ -126,6 +126,7 @@ class BookitgoldController extends JController
 
 		$nchilds = JRequest::getVar('nchilds');
 		$lchilds = JRequest::getVar('lchilds'); // Thessite
+		$arrival_time = JRequest::getVar('arrival_time'); // Thessite
 
 		
 
