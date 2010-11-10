@@ -155,6 +155,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$data->extra_ids = $extra_ids;
 		$data->preferences = $preferences;
 		$data->status = '2';
+		$data->arrival_time = $arrival_time;
 
 		// Thessite - Push data for pay_method
 		$data->pay_method = $pay_method;

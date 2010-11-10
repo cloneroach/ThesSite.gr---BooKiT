@@ -100,7 +100,7 @@ jimport('joomla.html.pagination');
 
 		<tr>
 
-			<td colspan="14"><?php 
+			<td colspan="15"><?php 
 
 			echo $this->pagination->getListFooter();?></td>
 
@@ -137,6 +137,8 @@ jimport('joomla.html.pagination');
 			<th width="10%"><?php echo JHTML::_( 'grid.sort', 'Check-in', 'valid_from', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 
 			<th width="10%"><?php echo JHTML::_( 'grid.sort', 'Check-out', 'valid_to', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			
+			<th width="5%"><?php echo JHTML::_('grid.sort', 'Arrival Time', 'arrival_time', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 
 			<th width="10%"><?php echo JText::_('Room'); ?></th>
 
@@ -259,6 +261,8 @@ jimport('joomla.html.pagination');
 		<td width="10%" align="center"><?php echo date($d1,strtotime($row->valid_from)); ?></td>
 
 		<td width="10%" align="center"><?php echo date($d1,strtotime($row->valid_to)); ?></td>
+		
+		<td width="5%" align="center"><?php echo $row->arrival_time; ?></td>
 
 		<td width="10%" align="center"><?php echo $room_name; ?></td>
 

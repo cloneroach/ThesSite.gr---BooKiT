@@ -84,7 +84,7 @@ $sql = "SELECT idcountry, name FROM #__bookitcountry ORDER BY name";
 $db->setQuery($sql);
 
 
-$select_country = JText::_('-Select Country-');
+$select_country = "-".JText::_('Select Country')."-";
 $results[] = JHTML::_('select.option', 0, $select_country, 'idcountry', 'name' );
 
 $results = array_merge( $results, $db->loadObjectList() );

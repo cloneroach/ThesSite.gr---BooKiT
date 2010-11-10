@@ -459,7 +459,7 @@ switch( $typos_dwmatiou ) {
 	<div class="bookit_booking_left_td"><?php echo JText::_("Children, 0 to 5 years old");?></div>
 <?php } ?>
 <?php if( $this->lchilds > 0 ){ ?>
-	<div class="bookit_booking_left_td"><?php echo JText::_("Childern, 6 to 12 years old"); // Thessite?></div>
+	<div class="bookit_booking_left_td"><?php echo JText::_("Children, 6 to 12 years old"); // Thessite?></div>
 <?php } ?>
 <div class="bookit_booking_left_td"><?php echo JText::_("Price");?></div>
 <?php
