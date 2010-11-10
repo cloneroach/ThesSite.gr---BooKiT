@@ -145,7 +145,7 @@ $night=JText::_("Night");
 
 
 
-$sql = 'SELECT * FROM #__bookitextra ORDER BY extra_type DESC';
+$sql = 'SELECT * FROM #__bookitextra ORDER BY idextra ASC'; // order by extra_type DESC
 
 $db->setQuery($sql);
 
@@ -153,7 +153,7 @@ $extra_array = $db->loadObjectList();
 
 
 
-$sql = 'SELECT * FROM #__bookitextra WHERE value_fix=\'0\' AND value_percent=\'0\' ORDER BY name';
+$sql = 'SELECT * FROM #__bookitextra WHERE value_fix=\'0\' AND value_percent=\'0\' ORDER BY idextra'; // order by name
 
 $db->setQuery($sql);
 
@@ -412,7 +412,10 @@ $n_childs = $this->nchilds;
 $n_guests = $this->nguests;
 $extra_ppl = 0;
 $new_price = 0;
-$total_guests = $l_childs + $n_childs + $n_guests;
+$new_extra_ppl = 0;
+
+//$total_guests = $l_childs + $n_childs + $n_guests;
+$total_guests = $l_childs + $n_guests;
 
 $typos_dwmatiou = $this->category_name;
 switch( $typos_dwmatiou ) {
@@ -420,7 +423,7 @@ switch( $typos_dwmatiou ) {
 		$capacity = 2;
 		break;
 	case "Apartment":
-		$capacity = 4;
+		$capacity = 2;
 		break;
 	case "Bungalow":
 		$capacity = 2;
@@ -459,7 +462,6 @@ switch( $typos_dwmatiou ) {
 <?php } ?>
 <div class="bookit_booking_left_td"><?php echo JText::_("Price");?></div>
 <?php
-//if( $total_guests > 4 ) {
 if( $total_guests > $capacity ){
 	?>
 	<div class="bookit_booking_left_td"><?php echo JText::_("Price for the extra person");?></div>
@@ -492,7 +494,6 @@ if( $total_guests > $capacity ){
 <?php
 
 // Thessite - Calculate the price for the extra persons and show it to the guest.
-$new_extra_ppl = 0;
 if( $total_guests > $capacity ) {
 	$extra_ppl = $total_guests - $capacity;
 	if( $extra_ppl < 0 ){
@@ -702,21 +703,32 @@ echo JText::_('COMMENTS_SPECIAL_RQ');
 
 <?php
 
-/* Start of Thessite Code
-** Checks if Guests are more than 4.
-** If so, add +6 euros for each person and each night
-** at the total_price
-*/
-
-$total_price = $total_price + $new_price;
 /*
-** End of Thessite Code
-*/
+ * Start of Thessite Code
+ * 10% Off if days > 7
+ * 
+ */
+
+$stay_for = $this->nnights;
+$stay_price = $total_price + $new_price;
+if( $stay_for >= 7 ){
+	$discount = ( $stay_price / 100) * 10;
+	$total_price = $total_price - $discount; 
+} else {
+	$total_price = $total_price + $new_price;
+}
+/*
+ * End of Thessite Code
+ */
 ?>
 
-<div id="bookit_booking_total" class='bookit_booking_final_price'><?php echo $total_price." ".$this->currency;?></div>
-
+<div id="bookit_booking_total" class='bookit_booking_final_price'><?php	echo $total_price." ".$this->currency;?></div>
 </div>
+
+<?php  if( $stay_for >= 7 ){ ?>
+<div id="bookit_booking_review_final_price_header"><?php echo JText::_('You have a 10% discount!'); ?>
+<div id="bookit_booking_total" class='bookit_booking_final_price'><?php echo "-".$discount." ".$this->currency; ?></div></div>
+<?php } ?>
 
 </div>
 <?php 

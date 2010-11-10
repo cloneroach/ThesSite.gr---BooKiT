@@ -173,7 +173,7 @@ class BookitgoldController extends JController
 			$sunolo_paidia = $nchilds + $lchilds;
 			
 			if( $sunolo_paidia > 1 ){
-				$child = JText::_("Childrens");
+				$child = JText::_("Children");
 			} else if( $sunolo_paidia == 1 ){
 				$child = JText::_("Child");
 			} else if( $sunolo_paidia == 0 ){

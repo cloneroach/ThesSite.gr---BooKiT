@@ -70,6 +70,17 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+/*
+ * Start of Thessite Code
+ * 
+ * GET pre-defined roomtype
+ * TODO: Na dw pws pernei timi dwmateiou wste na epilegei o xristis ti dwmatio 8elei ap ta article parousiasis tous.
+ */
+//@$predef_room = $_GET['room_type'];
+
+/*
+ * End of Thessite Code
+ */
 
 
 $stylesheet = 'search_form.css';
