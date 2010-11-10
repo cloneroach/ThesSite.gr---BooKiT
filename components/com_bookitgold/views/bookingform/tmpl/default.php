@@ -677,7 +677,10 @@ echo JText::_('COMMENTS_SPECIAL_RQ');
 
 <div class="bookit_booking_review_left"></div>
 
-<?php if ($show_coupons==1){?>
+<?php
+$show_coupons = 0; // Make it so we dont use promotional code!
+if ($show_coupons==1){
+?>
 
 <div class="bookit_booking_review_header"><?php echo JText::_("Promotional Code");?></div>
 
@@ -803,6 +806,14 @@ if ($deposit_percent>0) {
 <div class="bookit_booking_clear"></div>
 
 <?php 
+
+/*
+ * Thessite Code.
+ * CBA to delete ToC and Cancel. policy var, will redefine them.
+ */
+
+$terms_conditions = "";
+$cancellation_policy  = "";
 
 if ($terms_conditions!="" && $cancellation_policy!="")
 
