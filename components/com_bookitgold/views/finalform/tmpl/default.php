@@ -121,6 +121,18 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <?php }?>
 
+<div id="bookit_final_fname_left" class="bookit_final_left"><?php echo JText::_("Title").$star;?></div>
+
+<div id="bookit_final_fname_right" class="bookit_final_right">
+	<select class="bookit_final_input" name="title" id="title">
+		<option value="Dr">Dr.</option>
+		<option value="Mr" selected="selected">Mr.</option>
+		<option value="Mrs">Mrs.</option> 
+		<option value="Miss">Miss</option>
+	</select>
+</div>
+
+ 
 
 <div id="bookit_final_fname_left" class="bookit_final_left"><?php echo JText::_("First Name").$star;?></div>	
 
@@ -214,6 +226,12 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <input type="text" name="phone" id="phone" class="bookit_final_input" />
 
+</div>
+
+<div id="bookit_final_fname_left" class="bookit_final_left"><?php echo JText::_("Alternative Phone"); ?></div>
+
+<div id="bookit_final_fname_right" class="bookit_final_right">
+<input type="text" name="alt_phone" id="alt_phone" class="bookit_final_input" />
 </div>
 
 <div id="bookit_final_clear"></div>	
@@ -334,6 +352,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 *    
 *    echo JText::_("(Please note your name and Reference ID from the email you recieved).");
 */
+
 	?>
 
     </div>
@@ -711,6 +730,7 @@ function formValidation ()
 
 	cityErrorDiv.style.display="none";
 
+	// Start The check
 	
 	if( pay_MethodField.value=="0" ) {
 		pay_MethodErrorDiv.style.display=="inline";
@@ -1193,6 +1213,8 @@ function makeBooking (){
 	var exp_year_js = document.getElementById('exp_year').value;
 	var cardname_js = document.getElementById('cardname').value;
 	var pay_method_js = document.getElementById('pay_method').value;
+	var title_js = document.getElementById('title').value;
+	var alt_phone_js = document.getElementById('alt_phone').value;
 
 	var name_js = document.getElementById('name').value;
 
@@ -1362,7 +1384,7 @@ function makeBooking (){
 
 		// Thessite Additions for Childs / Pay Method - Credit Card / Arrival Time
 		url += "&lchilds="+lchilds_js+"&cardnumber="+cardnumber_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&cardname="+cardname_js+"&pay_method="+pay_method_js+"&arrival_time="+arrival_time_js;
-
+		url += "&title="+title_js+ "&alt_phone"+alt_phone_js;
 
 		xmlhttp.open("GET",url,true);	
 

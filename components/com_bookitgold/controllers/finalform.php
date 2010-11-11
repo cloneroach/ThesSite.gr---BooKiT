@@ -78,6 +78,8 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$pay_method = JRequest::getVar('pay_method');
 		$exp_year = JRequest::getVar('exp_year');
 		$exp_month = JRequest::getVar('exp_month');
+		$title = JRequest::getVar('title');
+		$alt_phone = JRequest::getVar('alt_phone');		
 
 
 		$db =& JFactory::getDBO();
@@ -100,7 +102,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$idguests = $result;
 			$query =  "UPDATE #__bookitguests SET idcountry='".$idcountry."', name='".$name."'
 			, surname='".$surname."', email='".$email."', addr='".$addr." ".$addr2." ".$pcode."'
-			, city='".$city."' , phone='".$phone."' WHERE idguests='".$idguests."';";
+			, city='".$city."' , phone='".$phone."' , alt_phone='".$alt_phone."' , title='".$title."' WHERE idguests='".$idguests."';";
 			$db->setQuery( $query );
 			$result = $db->query();
 		}
@@ -115,6 +117,8 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$data->addr=$addr." ".$addr2." ".$pcode;
 			$data->city=$city;
 			$data->phone=$phone;
+			$data->alt_phone = $alt_phone;
+			$data->title = $title;
 			$db->insertObject( '#__bookitguests', $data, 'idguests' );
 			$idguests= $db->insertid();
 		}
