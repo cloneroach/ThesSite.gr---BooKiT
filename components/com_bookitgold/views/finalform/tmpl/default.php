@@ -1384,7 +1384,7 @@ function makeBooking (){
 
 		// Thessite Additions for Childs / Pay Method - Credit Card / Arrival Time
 		url += "&lchilds="+lchilds_js+"&cardnumber="+cardnumber_js+"&exp_month="+exp_month_js+"&exp_year="+exp_year_js+"&cardname="+cardname_js+"&pay_method="+pay_method_js+"&arrival_time="+arrival_time_js;
-		url += "&title="+title_js+ "&alt_phone"+alt_phone_js;
+		url += "&title="+title_js+ "&alt_phone="+alt_phone_js;
 
 		xmlhttp.open("GET",url,true);	
 
