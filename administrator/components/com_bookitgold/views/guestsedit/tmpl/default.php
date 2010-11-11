@@ -74,7 +74,23 @@ jimport('joomla.html.pagination');
 
 	
 
-	
+	<tr>
+
+
+
+		<td width="100" align="right" class="key"><label for="title"> <?php echo JText::_( 'Title' ); ?>:
+
+		</label></td>
+
+
+
+		<td><input class="text_area" type="text" name="title" id="title"
+
+			size="30" maxlength="250" value="<?php echo $this->guests->title;?>" />
+
+		</td>
+
+	</tr>
 
 	<tr>
 
@@ -147,7 +163,23 @@ jimport('joomla.html.pagination');
 		</td>
 
 	</tr>
+	<tr>
 
+
+
+		<td width="100" align="right" class="key"><label for="alt_phone"> <?php echo JText::_( 'Alternative Phone' ); ?>:
+
+		</label></td>
+
+
+
+		<td><input class="text_area" type="text" name="alt_phone" id="alt_phone"
+
+			size="30" maxlength="250" value="<?php echo $this->guests->alt_phone;?>" />
+
+		</td>
+
+	</tr>
 
 
 

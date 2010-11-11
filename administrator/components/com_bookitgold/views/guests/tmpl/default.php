@@ -106,7 +106,7 @@ this.form.submit();"><?php echo JText::_('RESET'); ?></button>
 
 		<tr>
 
-			<td colspan="13"><?php 
+			<td colspan="15"><?php 
 
 			echo $this->pagination->getListFooter();?></td>
 
@@ -118,12 +118,10 @@ this.form.submit();"><?php echo JText::_('RESET'); ?></button>
 
 		<tr>
 
-			<th width="5%"><input type="checkbox" name="toggle" value=""
-
-				onclick="checkAll(<?php echo count( $this->guests ); ?>);" /></th>
+			<th width="5%"><input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->guests ); ?>);" /></th>
 
 			<th width="5%"><?php echo JHTML::_( 'grid.sort', 'ID', 'idguests', $this->lists['order_Dir'], $this->lists['order']); ?></th>
-
+			<th><?php echo JHTML::_( 'grid.sort', 'Title', 'title', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 			<th><?php echo JHTML::_( 'grid.sort', 'First Name', 'name', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 
 			<th><?php echo JHTML::_( 'grid.sort', 'Last Name', 'surname', $this->lists['order_Dir'], $this->lists['order']); ?></th>
@@ -133,6 +131,7 @@ this.form.submit();"><?php echo JText::_('RESET'); ?></button>
 			<th><?php echo JHTML::_( 'grid.sort', 'Email', 'email', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 
 			<th width="15%"><?php echo JHTML::_( 'grid.sort', 'Phone', 'phone', $this->lists['order_Dir'], $this->lists['order']); ?></th>
+			<th width="15%"><?php echo JHTML::_( 'grid.sort', 'Alt Phone', 'alt_phone', $this->lists['order_Dir'], $this->lists['order']); ?></th>
 
 
 
@@ -176,15 +175,9 @@ this.form.submit();"><?php echo JText::_('RESET'); ?></button>
 
 		<td width="5%" align="center"><?php echo $row->idguests; ?></td>
 
+		<td width="5%" align="center"><?php echo $row->title; ?></td>
 
-
-		<td width="15%" align="center"><a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
-
-
-
-		</td>
-
-
+		<td width="15%" align="center"><a href="<?php echo $link; ?>"><?php echo $row->name; ?></a></td>
 
 		<td width="15%" align="center"><?php echo $row->surname; ?></td>
 
@@ -193,14 +186,7 @@ this.form.submit();"><?php echo JText::_('RESET'); ?></button>
 		<td width="15%" align="center"><?php echo $row->email; ?></td>
 
 		<td width="15%" align="center"><?php echo $row->phone; ?></td>
-
-
-
-
-
-
-
-
+		<td width="15%" align="center"><?php echo $row->alt_phone; ?></td>
 
 	</tr>
 

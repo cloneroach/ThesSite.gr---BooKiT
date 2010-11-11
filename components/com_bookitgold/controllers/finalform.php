@@ -117,6 +117,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 			$data->addr=$addr." ".$addr2." ".$pcode;
 			$data->city=$city;
 			$data->phone=$phone;
+			//Thessite 
 			$data->alt_phone = $alt_phone;
 			$data->title = $title;
 			$db->insertObject( '#__bookitguests', $data, 'idguests' );
@@ -286,11 +287,11 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$config->getValue( 'config.fromname' ) );
 		$mailer->setSender($sender);
 
-		$recipients = array(/* $email, */$config->getValue( 'config.mailfrom' ) ); //Thessite
+		$recipients = array( $email, $config->getValue( 'config.mailfrom' ) ); //Thessite
 		$mailer->addRecipient($recipients);
 
 		$title = JText::_("Booking Request Received");
-		$intro1 = JText::_('Dear')." ".$name." ".$surname.",";
+		$intro1 = JText::_('Dear')." ".$title." ".$name." ".$surname.",";
 		$intro2 = JText::_('Thank you for your booking request. Your booking details are as follows.');
 		$companyName=$config->getValue('config.fromname');
 		$cop =JText::_("Copyright");
@@ -327,7 +328,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		}
 		
 		// Thessite - Fetch the email logo
-		$email_logo = $params->get('email_logo');
+/*		$email_logo = $params->get('email_logo');
 		$mail_body = "<table width='570' border='0' cellpadding='5' cellspacing='1'
 		style='border: 1px solid #DEDEDE;
 		font-family: verdana; 
@@ -378,10 +379,11 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		if( !$info_mail->Send() ){
 			die("An error occured, please contact the developers at dev@thessite.gr !");
 		}
-
-		/* End of Thessite Code */
+*/
+		// End of Thessite Code 
 
 		//Accommodation Details
+		$alt_phone_txt = JText::_("Alternative Phone");
 		$accommodation_header=JText::_("Accommodation Details");
 		$check_in = JText::_("Date of Arrival"); // Thessite
 		$check_out = JText::_("Date of Departure"); // Thessite
@@ -515,6 +517,17 @@ class BookitgoldControllerFinalform extends BookitgoldController
           <td style='background:#fafafa;
 					color:#000;
 					padding:8px;'>".$phone."</td>
+        </tr>
+        <tr>
+
+          <th style='background:#e8f1fa;
+					color:#000;
+					padding:8px;
+					text-align:left;'>".$alt_phone_txt."</th>
+          <td style='background:#fafafa;
+					color:#000;
+
+					padding:8px;'>".$alt_phone."</td>
         </tr>
         <tr>
           <th style='background:#e8f1fa;

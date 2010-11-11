@@ -125,10 +125,10 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <div id="bookit_final_fname_right" class="bookit_final_right">
 	<select class="bookit_final_input" name="title" id="title">
-		<option value="Dr">Dr.</option>
-		<option value="Mr" selected="selected">Mr.</option>
-		<option value="Mrs">Mrs.</option> 
-		<option value="Miss">Miss</option>
+		<option value="Dr"><?php echo JText::_("Dr")."."; ?> </option>
+		<option value="Mr" selected="selected"><?php echo JText::_("Mr").".";?></option>
+		<option value="Mrs"><?php echo JText::_("Mrs").".";?></option> 
+		<option value="Miss"><?php echo JText::_("Miss").".";?></option>
 	</select>
 </div>
 
