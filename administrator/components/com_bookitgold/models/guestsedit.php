@@ -183,6 +183,8 @@ function &getData()
 			$this->_data->idguests = 0;
 
 			$this->_data->idcountry = 0;
+			
+			$this->_data->title = null; // Thessite
 
 			$this->_data->name = null;
 
@@ -195,6 +197,8 @@ function &getData()
 			$this->_data->addr = null;
 
 			$this->_data->phone = null;
+			
+			$this->_data->alt_phone = null; // Thessite
 
 
 
@@ -237,6 +241,9 @@ function &getData()
 		$city = JRequest::getVar('city');
 
 		$id = JRequest::getVar('idguests');
+		
+		$alt_phone = JRequest::getVar('alt_phone');
+		$title = JRequest::getVar('title');
 
 
 
