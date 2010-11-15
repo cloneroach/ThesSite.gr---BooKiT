@@ -705,6 +705,7 @@ if ($show_coupons==1){
 
 <div id="bookit_booking_review_final_price_header"><?php echo JText::_("Total Cost");?>
 
+
 <?php
 
 /*
@@ -799,9 +800,9 @@ if ($deposit_percent>0) {
 </div>
 
 <?php }?>
-
-
-
+<?php 
+echo JText::_("Note").": ".JText::_("At the above mentioned prices all taxes are included");
+?>
 
 
 <div class="bookit_booking_clear"></div>

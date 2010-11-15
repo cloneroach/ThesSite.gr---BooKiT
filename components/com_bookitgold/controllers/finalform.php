@@ -291,6 +291,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
 		$mailer->addRecipient($recipients);
 
 		$title = JText::_("Booking Request Received");
+		$taxes = JText::_("Note").": ".JText::_("At the above mentioned prices all taxes are included");
 		$intro1 = JText::_('Dear')." ".$title." ".$name." ".$surname.",";
 		$intro2 = JText::_('Thank you for your booking request. Your booking details are as follows.');
 		$companyName=$config->getValue('config.fromname');
@@ -317,14 +318,24 @@ class BookitgoldControllerFinalform extends BookitgoldController
  * }
  */		
 		
-		if($pay_method == "1"){
+/*		if($pay_method == "1"){
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('In the following days you will receive the account number and following that your reservation confirmation at your e-mail.');
-			$keimeno .= JText::_('We look forward to welcoming you!');
+			$keimeno .= "<p>".JText::_('We look forward to welcoming you!')."</p>";
 		} else {
 			$keimeno = JText::_('Thank you for your reservation in "Akti Retzika".');
 			$keimeno .= JText::_('Within the following days you will receive your reservation confirmation at your e-mail.');
 			$keimeno .= "<p>".JText::_('We look forward to welcoming you!')."</p>";
+		}
+*/
+		if ($pay_method == "1"){
+			$keimeno = JText::_('keimeno_pay1_1');
+			$keimeno .= JText::_('keimeno_pay1_2');
+			$keimeno .="<p>". JText::_('keimeno_pay1_3')."</p>";
+		}else {
+			$keimeno = JText::_('keimeno_pay2_1');
+			$keimeno .= JText::_('keimeno_pay2_2');
+			$keimeno .=	"<p>".JText::_('keimeno_pa2_3') ."</p>";
 		}
 		
 		// Thessite - Fetch the email logo
@@ -692,7 +703,7 @@ class BookitgoldControllerFinalform extends BookitgoldController
     			<p style='font-family: verdana;
 					font-size: 12px;
 					font-weight: normal;
-					color: #000000;'>".$intro2."</p>
+					color: #000000;'><strong>".$keimeno."</strong></p>
       			</td>    
 				</tr>
 			

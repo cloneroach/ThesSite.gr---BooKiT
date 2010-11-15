@@ -466,7 +466,7 @@ $lists['country']  = JHTML::_('select.genericList', $results, 'idcountry', 'clas
 
 <div id="bookit_succeed" style="display: none;">
 
-<?php echo JText::_("Thank you for your request! A verification email has been sent to the specified address.")?>
+<?php echo JText::_("Thank you for your request! An itinerary review email has been sent to the specified address.")?>
 
 </div>
 
